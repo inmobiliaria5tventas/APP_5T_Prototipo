@@ -8,6 +8,7 @@ window.APP5T_DemoSeeder = (function() {
 
   function cargarEscenarioMarketing() {
     const pfx = 'demo5t_';
+    localStorage.setItem(pfx + 'db_version', '2.0.0');
 
     // 1. Clientes Realistas (Pool de 20 clientes)
     const clientes = [
