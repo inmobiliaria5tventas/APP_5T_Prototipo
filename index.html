@@ -1371,10 +1371,10 @@
           try { evaluarPermisosYRenderizar(permisos, user.rol); } catch(ex) {}
         }
         if (typeof switchRole === 'function') {
-          try { switchRole('Administracion'); } catch(ex) {}
+          try { switchRole('administrador'); } catch(ex) {}
         }
         if (typeof _buildSidebar === 'function') {
-          try { _buildSidebar('Administracion'); } catch(ex) {}
+          try { _buildSidebar('administrador'); } catch(ex) {}
         }
         if (typeof switchTab === 'function') {
           try { switchTab('mapa'); } catch(ex) {}
