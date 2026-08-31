@@ -5212,3 +5212,64 @@ table.premium-table .form-switch input[type="checkbox"].form-check-input:checked
   display: block !important;
   margin-bottom: 16px !important;
 }
+/* ==========================================================================
+   STRICT TAB PANEL & FULL-VIEWPORT MAP POSITIONING
+   ========================================================================== */
+.tab-panel {
+  display: none !important;
+  margin: 0 !important;
+}
+
+.tab-panel.active {
+  display: block !important;
+}
+
+#panel-mapa.active {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  height: calc(100vh - var(--header-height) - 10px) !important;
+  min-height: calc(100vh - var(--header-height) - 10px) !important;
+  padding: 10px 18px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+#panel-mapa .map-controls {
+  margin: 0 0 10px 0 !important;
+  padding: 0 !important;
+}
+
+#panel-mapa .gis-layout {
+  display: flex !important;
+  flex: 1 !important;
+  height: calc(100% - 55px) !important;
+  min-height: 480px !important;
+  gap: 14px !important;
+  margin: 0 !important;
+}
+
+#panel-mapa .map-container {
+  display: flex !important;
+  flex: 2 !important;
+  height: 100% !important;
+  min-height: 480px !important;
+  position: relative !important;
+  margin: 0 !important;
+}
+
+#panel-mapa .map-element {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 480px !important;
+}
+
+#panel-mapa .lote-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+  min-width: 320px !important;
+  max-width: 380px !important;
+  height: 100% !important;
+}

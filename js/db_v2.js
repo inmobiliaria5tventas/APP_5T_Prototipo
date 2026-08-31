@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ============================================================
  *  5 Tierras — APP5T_DB
  *  Módulo de base de datos local (localStorage)
