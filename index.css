@@ -5477,3 +5477,15 @@ table.premium-table .form-switch input[type="checkbox"].form-check-input:checked
     overflow-y: auto !important;
   }
 }
+/* ==========================================================================
+   MOBILE OVERRIDES (FIX FOR WHITE BOX)
+   ========================================================================== */
+@media (max-width: 768px) {
+  #panel-mapa .map-controls {
+    display: none !important;
+  }
+  #panel-mapa .map-controls.expanded {
+    display: flex !important;
+  }
+}
+

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * DEMO_GEOCONECTA - Enhanced Multi-Project Marketing Scenario Generator
  * Pobla masivamente los 4 proyectos (Copihue, Brisas, Encinos, Naranjos) con datos comerciales,
  * estados visuales en mapa, aprobaciones, cuotas y métricas.
@@ -242,6 +242,34 @@ window.APP5T_DemoSeeder = (function() {
     configurarLote(4, 18, 'Vendida', 5, 1, { fecha_reserva: '2026-05-02', fecha_promesa: '2026-05-20', fecha_escritura: '2026-07-10', autorizado_escriturar: 'SI' });
     configurarLote(4, 19, 'Disponible', 1, 1);
     configurarLote(4, 20, 'Vendida', 13, 3, { fecha_reserva: '2026-06-08', fecha_promesa: '2026-06-25', fecha_escritura: '2026-08-10', autorizado_escriturar: 'SI' });
+
+    // ==========================================
+    // AUTO-POBLAR LOTES RESTANTES (Para llenar mapas 85% para video)
+    // ==========================================
+    props.forEach(p => {
+      if (!p.estado || p.estado === 'Disponible') {
+        const rand = Math.random();
+        if (rand < 0.85) { // 85% chance of being occupied
+          const estados = ['Vendida', 'Vendida', 'Promesada', 'Reservada', 'Pendiente'];
+          const newEstado = estados[Math.floor(Math.random() * estados.length)];
+          const cliIndex = Math.floor(Math.random() * 16) + 1; // 1 to 16
+          const vendId = Math.floor(Math.random() * 3) + 1; // 1 to 3
+          
+          let options = {};
+          if (newEstado === 'Vendida') options = { fecha_reserva: '2026-03-01', fecha_promesa: '2026-04-01', fecha_escritura: '2026-05-01', autorizado_escriturar: 'SI' };
+          else if (newEstado === 'Promesada') options = { fecha_reserva: '2026-06-01', fecha_promesa: '2026-07-01', promesa_firmada: true, cuotasPagadas: 3 };
+          else if (newEstado === 'Reservada') options = { fecha_reserva: '2026-08-01', ficha_abogado_generada: true };
+          
+          let numLote = p.nro_lote;
+          if (!numLote && p.nombre) {
+             numLote = p.nombre.replace('Lote ', '').trim();
+          }
+          if (numLote) {
+             configurarLote(p.id_proyecto, numLote, newEstado, cliIndex, vendId, options);
+          }
+        }
+      }
+    });
 
     // 5. Guardar todas las tablas actualizadas en demo5t_
     localStorage.setItem(pfx + 'clientes', JSON.stringify(clientes));

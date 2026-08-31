@@ -1,4 +1,4 @@
-﻿/**
+/**
  * =====================================================
  * APP.JS - APP5T  (Main SPA Controller)
  * CRM & GIS Unificado - 5 Tierras
@@ -139,9 +139,10 @@ const APP5T = (() => {
     administrador: 'mesa'
   };
 
-  /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  /* â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• 
+  /* ========================================================================= 
      MENU CONFIGURATION PER ROLE
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+     =========================================================================  */
   const ALL_MENUS = [
     { 
       id: 'proyectos_group', 
@@ -162,7 +163,7 @@ const APP5T = (() => {
     { id: 'catalogo',   icon: 'fa-folder-tree',          label: 'Catálogo Documental' },
     { id: 'ctacte',     icon: 'fa-money-check-dollar',   label: 'Cuenta Corriente' },
     { id: 'informes',   icon: 'fa-file-invoice-dollar',  label: 'Informes Mensuales' },      
-    { id: 'carga',      icon: 'fa-database',             label: 'Carga de Datos' },
+    
     { id: 'inventario', icon: 'fa-list-check',           label: 'Inventario' },
     { id: 'auditoria',  icon: 'fa-clock-rotate-left',    label: 'Auditoría' }
   ];
