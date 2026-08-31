@@ -201,23 +201,30 @@ window.APP5T_DemoSeeder = (function() {
     configurarLote(2, 16, 'Vendida', 8, 3, { fecha_reserva: '2026-04-20', fecha_promesa: '2026-05-10', fecha_escritura: '2026-06-30', autorizado_escriturar: 'SI' });
     configurarLote(2, 22, 'Promesada', 6, 2, { fecha_reserva: '2026-07-01', fecha_promesa: '2026-07-20', promesa_firmada: true, cuotasPagadas: 4 });
 
-    // ==========================================
+        // ==========================================
     // 3. PROYECTO: LOS ENCINOS (ID 3)
     // ==========================================
-    configurarLote(3, 1, 'Disponible', 1, 1);
-    configurarLote(3, 2, 'Disponible', 1, 1);
-    configurarLote(3, 3, 'Reservada', 7, 3, { fecha_reserva: '2026-08-22', ficha_abogado_generada: false, notas: 'Aprobada por Gerencia. Pendiente emisión de ficha legal.' });
-    configurarLote(3, 4, 'Disponible', 1, 1);
-    configurarLote(3, 5, 'Pendiente', 3, 2, { fecha_reserva: '2026-08-27', notas: 'Reserva VIP Los Encinos Etapa 1.' });
-    configurarLote(3, 6, 'Disponible', 1, 1);
-    configurarLote(3, 7, 'Disponible', 1, 1);
-    configurarLote(3, 8, 'Disponible', 1, 1);
-    configurarLote(3, 9, 'Promesada', 4, 3, { fecha_reserva: '2026-07-10', fecha_promesa: '2026-07-28', promesa_firmada: true, cuotasPagadas: 2 });
-    configurarLote(3, 10, 'Vendida', 13, 2, { fecha_reserva: '2026-06-05', fecha_promesa: '2026-06-20', fecha_escritura: '2026-08-05', autorizado_escriturar: 'SI' });
-    configurarLote(3, 11, 'Vendida', 2, 1, { fecha_reserva: '2026-06-12', fecha_promesa: '2026-06-30', fecha_escritura: '2026-08-12', autorizado_escriturar: 'SI' });
-    configurarLote(3, 12, 'Disponible', 1, 1);
-    configurarLote(3, 13, 'Promesada', 9, 2, { fecha_reserva: '2026-07-18', fecha_promesa: '2026-08-04', promesa_firmada: true, cuotasPagadas: 1 });
-    configurarLote(3, 14, 'Vendida', 10, 3, { fecha_reserva: '2026-05-15', fecha_promesa: '2026-06-02', fecha_escritura: '2026-07-20', autorizado_escriturar: 'SI' });
+    configurarLote(3, 33, 'Vendida', 10, 1, { fecha_reserva: '2026-05-10', fecha_promesa: '2026-05-28', fecha_escritura: '2026-07-15', autorizado_escriturar: 'SI' });
+    configurarLote(3, 34, 'Promesada', 4, 2, { fecha_reserva: '2026-06-12', fecha_promesa: '2026-07-01', promesa_firmada: true, cuotasPagadas: 3 });
+    configurarLote(3, 35, 'Vendida', 8, 3, { fecha_reserva: '2026-04-18', fecha_promesa: '2026-05-05', fecha_escritura: '2026-06-25', autorizado_escriturar: 'SI' });
+    configurarLote(3, 36, 'Vendida', 2, 1, { fecha_reserva: '2026-05-20', fecha_promesa: '2026-06-08', fecha_escritura: '2026-07-30', autorizado_escriturar: 'SI' });
+    configurarLote(3, 37, 'Promesada', 9, 2, { fecha_reserva: '2026-07-10', fecha_promesa: '2026-07-28', promesa_firmada: true, cuotasPagadas: 2 });
+    configurarLote(3, 38, 'Reservada', 7, 3, { fecha_reserva: '2026-08-20', ficha_abogado_generada: true, notas: '[FICHA_ABOGADO:GENERADA] Reserva con comprobante validado Los Encinos.' });
+    configurarLote(3, 39, 'Pendiente', 3, 2, { fecha_reserva: '2026-08-28', notas: 'Solicitud de reserva ingresada por vendedor.' });
+    configurarLote(3, 40, 'Vendida', 13, 1, { fecha_reserva: '2026-04-05', fecha_promesa: '2026-04-22', fecha_escritura: '2026-06-18', autorizado_escriturar: 'SI' });
+    configurarLote(3, 41, 'Vendida', 15, 3, { fecha_reserva: '2026-05-02', fecha_promesa: '2026-05-20', fecha_escritura: '2026-07-10', autorizado_escriturar: 'SI' });
+    configurarLote(3, 42, 'Reservada', 6, 2, { fecha_reserva: '2026-08-22', ficha_abogado_generada: false, notas: 'Aprobada por Gerencia. Pendiente confección de promesa.' });
+    configurarLote(3, 45, 'Disponible', 1, 1);
+    configurarLote(3, 46, 'Reservada', 14, 1, { fecha_reserva: '2026-08-24', ficha_abogado_generada: true, notas: '[FICHA_ABOGADO:GENERADA] Ficha legal emitida.' });
+    configurarLote(3, 47, 'Pendiente', 5, 3, { fecha_reserva: '2026-08-29', notas: 'Interesado solicita plazo hasta fin de mes.' });
+    configurarLote(3, 49, 'Disponible', 1, 1);
+    configurarLote(3, 50, 'Vendida', 11, 2, { fecha_reserva: '2026-05-15', fecha_promesa: '2026-06-02', fecha_escritura: '2026-07-25', autorizado_escriturar: 'SI' });
+    configurarLote(3, 52, 'Vendida', 1, 1, { fecha_reserva: '2026-03-25', fecha_promesa: '2026-04-12', fecha_escritura: '2026-06-05', autorizado_escriturar: 'SI' });
+    configurarLote(3, 53, 'Promesada', 12, 3, { fecha_reserva: '2026-07-15', fecha_promesa: '2026-08-02', promesa_firmada: true, cuotasPagadas: 1 });
+    configurarLote(3, 54, 'Promesada', 16, 2, { fecha_reserva: '2026-07-18', fecha_promesa: '2026-08-05', promesa_firmada: true, cuotasPagadas: 1 });
+    configurarLote(3, 55, 'Promesada', 4, 1, { fecha_reserva: '2026-07-22', fecha_promesa: '2026-08-08', promesa_firmada: true, cuotasPagadas: 1 });
+    configurarLote(3, 56, 'Reservada', 8, 3, { fecha_reserva: '2026-08-25', ficha_abogado_generada: true });
+    configurarLote(3, 57, 'Disponible', 1, 1);
 
     // ==========================================
     // 4. PROYECTO: LOS NARANJOS (ID 4)
