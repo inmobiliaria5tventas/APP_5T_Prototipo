@@ -5202,3 +5202,13 @@ table.premium-table .form-switch input[type="checkbox"].form-check-input:checked
     min-height: 480px !important;
   }
 }
+/* Dashboard Top Alignment & No-Gap Layout */
+#panel-dashboard {
+  padding-top: 14px !important;
+  margin-top: 0 !important;
+}
+
+#panel-dashboard .dashboard-gerencia-header {
+  display: block !important;
+  margin-bottom: 16px !important;
+}
