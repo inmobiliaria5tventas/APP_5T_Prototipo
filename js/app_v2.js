@@ -159,12 +159,12 @@ const APP5T = (() => {
     { id: 'leads',      icon: 'fa-users',                label: 'Mis Clientes' },
     { id: 'aprobaciones',icon: 'fa-stamp',               label: 'Aprobaciones' },
     { id: 'mesa',       icon: 'fa-file-contract',        label: 'Mesa Documental' },
-    { id: 'catalogo',   icon: 'fa-folder-tree',          label: 'CatÃ¡logo Documental' },
+    { id: 'catalogo',   icon: 'fa-folder-tree',          label: 'Catálogo Documental' },
     { id: 'ctacte',     icon: 'fa-money-check-dollar',   label: 'Cuenta Corriente' },
     { id: 'informes',   icon: 'fa-file-invoice-dollar',  label: 'Informes Mensuales' },      
     { id: 'carga',      icon: 'fa-database',             label: 'Carga de Datos' },
     { id: 'inventario', icon: 'fa-list-check',           label: 'Inventario' },
-    { id: 'auditoria',  icon: 'fa-clock-rotate-left',    label: 'AuditorÃ­a' }
+    { id: 'auditoria',  icon: 'fa-clock-rotate-left',    label: 'Auditoría' }
   ];
 
   const MENUS = {
@@ -175,7 +175,7 @@ const APP5T = (() => {
 
   const ROLE_NAMES = {
     vendedor:      { name: 'Manuel Matus',  title: 'Fuerza de Ventas' },
-    administrador: { name: 'Pia Erices',    title: 'AdministraciÃ³n' },
+    administrador: { name: 'Pia Erices',    title: 'Administración' },
     gerente:       { name: 'Daniel Gajardo',title: 'Gerencia' }
   };
 
@@ -381,8 +381,8 @@ const APP5T = (() => {
       
       let title = u.Rol || u.rol;
       if (title === 'Vendedor') title = 'Fuerza de Ventas';
-      if (title === 'Gerencia') title = 'DirecciÃ³n Comercial';
-      if (title === 'Administracion') title = 'AdministraciÃ³n General';
+      if (title === 'Gerencia') title = 'Dirección Comercial';
+      if (title === 'Administracion') title = 'Administración General';
       if (roleEl) roleEl.textContent = title;
     } else {
       const info = ROLE_NAMES[role] || ROLE_NAMES.vendedor;
@@ -1175,7 +1175,7 @@ const APP5T = (() => {
     // â”€â”€ 9. Inventario â”€â”€
     _safeRender(_renderInventario, 'Inventario');
 
-    // â”€â”€ 10. AuditorÃ­a â”€â”€
+    // â”€â”€ 10. Auditoría â”€â”€
     _safeRender(_renderAuditoria, 'Auditoria');
 
     // â”€â”€ 11. Leads â”€â”€
@@ -1662,7 +1662,7 @@ const APP5T = (() => {
       return;
     }
 
-    if (!confirm(`Â¿Confirma la autorizaciÃ³n de Gerencia para habilitar la Firma de la Promesa de Compraventa del lote ${prop.nombre || `Lote ${prop.id}`} en AdministraciÃ³n?`)) return;
+    if (!confirm(`Â¿Confirma la autorizaciÃ³n de Gerencia para habilitar la Firma de la Promesa de Compraventa del lote ${prop.nombre || `Lote ${prop.id}`} en Administración?`)) return;
 
     // 1. Marcar autorizaciÃ³n en la propiedad y en todas las negociaciones del lote
     APP5T_DB.update('propiedades', prop.id, {
@@ -1679,7 +1679,7 @@ const APP5T = (() => {
       });
     });
 
-    APP5T_Utils.showToast('Firma de Promesa autorizada por Gerencia. BotÃ³n "Promesa" habilitado en la Mesa Documental de AdministraciÃ³n.', 'success');
+    APP5T_Utils.showToast('Firma de Promesa autorizada por Gerencia. BotÃ³n "Promesa" habilitado en la Mesa Documental de Administración.', 'success');
 
     if (typeof APP5T_Sync !== 'undefined' && typeof APP5T_Sync.syncLocalToRemote === 'function') {
       APP5T_Sync.syncLocalToRemote().catch(() => {});
@@ -2313,7 +2313,7 @@ const APP5T = (() => {
     }).join('');
   }
 
-  // --- Helpers for CatÃ¡logo Documental ---
+  // --- Helpers for Catálogo Documental ---
   window.APP5T = window.APP5T || {};
   window.APP5T.filterCatalogo = function() {
     _renderCatalogoDocumentos();
@@ -2490,7 +2490,7 @@ const APP5T = (() => {
             <div class="client-detail-drawer-box" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 6px;">
               <div><span style="color: var(--text-dim);"><i class="fa-solid fa-phone" style="color:var(--accent-blue);"></i> Tel�fono:</span> <strong style="color: var(--text-white);">${telefono}</strong></div>
               <div><span style="color: var(--text-dim);"><i class="fa-solid fa-envelope" style="color:var(--accent-blue);"></i> Email:</span> <strong style="color: var(--text-white); word-break: break-all;">${emailObj}</strong></div>
-              <div><span style="color: var(--text-dim);"><i class="fa-solid fa-location-dot" style="color:var(--accent-orange);"></i> Direcci�n:</span> <strong style="color: var(--text-white);">${direccion}</strong></div>
+              <div><span style="color: var(--text-dim);"><i class="fa-solid fa-location-dot" style="color:var(--accent-orange);"></i> Dirección:</span> <strong style="color: var(--text-white);">${direccion}</strong></div>
               <div><span style="color: var(--text-dim);"><i class="fa-solid fa-briefcase" style="color:var(--accent-purple);"></i> Profesi�n:</span> <strong style="color: var(--text-white);">${profesion}</strong></div>
               <div><span style="color: var(--text-dim);"><i class="fa-solid fa-heart" style="color:var(--accent-pink, #e84393);"></i> Est. Civil:</span> <strong style="color: var(--text-white);">${estadoCivil}</strong></div>
               <div><span style="color: var(--text-dim);"><i class="fa-solid fa-calendar-day"></i> Registrado:</span> <strong style="color: var(--text-white);">${ingreso} (${canal})</strong></div>
@@ -2603,7 +2603,7 @@ const APP5T = (() => {
           <div style="display:flex; gap:6px; justify-content:flex-end;">
             ${p.url && p.url.trim() !== '' ? 
               `<a href="${p.url}" target="_blank" class="btn btn-sm btn-outline" style="padding: 4px 8px; font-size: 0.7rem; border-color: var(--accent-green); color: var(--accent-green); text-decoration: none;" title="Ver Documentos del Lote"><i class="fa-solid fa-folder-open"></i> Docs</a>` : 
-              `<button class="btn btn-sm btn-outline" onclick="if(window.APP5T_Utils) APP5T_Utils.showToast('No hay una carpeta de Drive configurada para este lote. ConfigÃºrala en el CatÃ¡logo Documental.', 'warning');" style="padding: 4px 8px; font-size: 0.7rem; border-color: var(--text-dim); color: var(--text-dim);" title="Documentos (No config.)"><i class="fa-solid fa-folder-open"></i> Docs</button>`}
+              `<button class="btn btn-sm btn-outline" onclick="if(window.APP5T_Utils) APP5T_Utils.showToast('No hay una carpeta de Drive configurada para este lote. ConfigÃºrala en el Catálogo Documental.', 'warning');" style="padding: 4px 8px; font-size: 0.7rem; border-color: var(--text-dim); color: var(--text-dim);" title="Documentos (No config.)"><i class="fa-solid fa-folder-open"></i> Docs</button>`}
             ${currentRole === 'administrador' ? `
             <button class="btn btn-sm btn-outline" onclick="APP5T_Forms._editRecord('propiedades', '${p.id}')" style="padding: 4px 8px; font-size: 0.7rem; border-color: var(--accent-blue); color: var(--accent-blue);" title="Editar Lote">
               <i class="fa-solid fa-pen"></i> Editar
@@ -2744,7 +2744,7 @@ const APP5T = (() => {
         <td>${proyNom}</td>
         <td>${fecha}</td>
         <td>${tipoBadge}</td>
-        <td><span class="tag tag-pending"><i class="fa-solid fa-clock"></i> Pendiente AprobaciÃ³n</span></td>
+        <td><span class="tag tag-pending"><i class="fa-solid fa-clock"></i> Pendiente Aprobación</span></td>
       </tr>`;
     }).join('');
   }
@@ -3658,7 +3658,7 @@ const APP5T = (() => {
     }
 
     let csvContent = '\uFEFF'; // UTF-8 BOM para Excel
-    const headers = ['Nombres', 'Apellidos', 'RUT', 'Email', 'TelÃ©fono', 'ProfesiÃ³n', 'DirecciÃ³n', 'Comuna', 'Estado Cliente', 'Fecha Registro', 'Notas'];
+    const headers = ['Nombres', 'Apellidos', 'RUT', 'Email', 'TelÃ©fono', 'ProfesiÃ³n', 'Dirección', 'Comuna', 'Estado Cliente', 'Fecha Registro', 'Notas'];
     csvContent += headers.join(';') + '\r\n';
 
     clientes.forEach(c => {
@@ -4253,7 +4253,7 @@ const APP5T = (() => {
         </table>
 
         <div class="footer">
-          Documento generado automÃ¡ticamente por el sistema de gestiÃ³n 5 Tierras. &copy; ${new Date().getFullYear()} 5 Tierras Ltda. Todos los derechos reservados.
+          Documento generado automáticamente por el sistema de gestiÃ³n 5 Tierras. &copy; ${new Date().getFullYear()} 5 Tierras Ltda. Todos los derechos reservados.
         </div>
 
         <script>
@@ -4280,7 +4280,7 @@ const APP5T = (() => {
     // TÃ­tulo dinÃ¡mico para evitar confusiÃ³n si ya se aprobÃ³
     const title = (prop.estado === 'Reservada' || prop.estado === 'Promesada') 
         ? 'Gestión de Reserva' 
-        : 'RevisiÃ³n de AprobaciÃ³n';
+        : 'RevisiÃ³n de Aprobación';
         
     openModal(title, html);
     setTimeout(() => {
@@ -4483,7 +4483,7 @@ const APP5T = (() => {
           return p.length === 3 ? `${p[2]}/${p[1]}/${p[0]}` : s;
         };
 
-        // Llamar a firmarPromesa que genera cuotas automÃ¡ticamente y sincroniza
+        // Llamar a firmarPromesa que genera cuotas automáticamente y sincroniza
         if (neg) {
           const fechaVencCuota = esVentaDirecta ? '' : (document.getElementById('prom-venc-cuota') ? document.getElementById('prom-venc-cuota').value : '');
           const promData = {
@@ -4744,7 +4744,7 @@ const APP5T = (() => {
     adminUnlocked = true;
     _buildSidebar(activeRole);
     if (typeof APP5T_Utils !== 'undefined') {
-      APP5T_Utils.showToast('Consola de AdministraciÃ³n General desbloqueada', 'success');
+      APP5T_Utils.showToast('Consola de Administración General desbloqueada', 'success');
     }
   }
 
@@ -4922,7 +4922,7 @@ const APP5T = (() => {
             <select id="user-edit-rol" style="width: 100%; padding: 10px; background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); color: var(--text-white); cursor: pointer; font-family: 'Inter', sans-serif;">
               <option value="Vendedor" ${isEdit && getRoleKey(userData.Rol) === 'Vendedor' ? 'selected' : ''}>Vendedor</option>
               <option value="Gerencia" ${isEdit && getRoleKey(userData.Rol) === 'Gerencia' ? 'selected' : ''}>Gerencia</option>
-              <option value="Administracion" ${isEdit && getRoleKey(userData.Rol) === 'Administracion' ? 'selected' : ''}>AdministraciÃ³n</option>
+              <option value="Administracion" ${isEdit && getRoleKey(userData.Rol) === 'Administracion' ? 'selected' : ''}>Administración</option>
             </select>
           </div>
           <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
@@ -5385,7 +5385,7 @@ const APP5T = (() => {
             APP5T_Utils.showToast('Descargando datos...', 'info');
             const res = await APP5T_Sync.pullAll();
             if (res && res.success) {
-              APP5T_Utils.showToast('SincronizaciÃ³n de bajada completa. Datos actualizados.', 'success');
+              APP5T_Utils.showToast('Sincronización de bajada completa. Datos actualizados.', 'success');
             } else {
               APP5T_Utils.showToast('Error al descargar datos: respuesta invÃ¡lida', 'error');
             }
@@ -6434,7 +6434,7 @@ const APP5T = (() => {
       }
 
       // Toast notification feedback
-      const msgText = 'Â¡ConfiguraciÃ³n de WhatsApp guardada exitosamente!';
+      const msgText = 'Â¡Configuración de WhatsApp guardada exitosamente!';
       if (window.APP5T_Utils && typeof window.APP5T_Utils.showToast === 'function') {
         window.APP5T_Utils.showToast(msgText, 'success');
       } else if (typeof APP5T_Utils !== 'undefined' && typeof APP5T_Utils.showToast === 'function') {

@@ -5172,3 +5172,33 @@ table.premium-table .form-switch input[type="checkbox"].form-check-input:checked
     display: inline-flex !important;
   }
 }
+/* Desktop GIS Full-Height Layout Enforcement */
+@media (min-width: 769px) {
+  #panel-mapa.active {
+    display: flex !important;
+    flex-direction: column !important;
+    height: calc(100vh - var(--header-height) - 10px) !important;
+    min-height: 580px !important;
+    padding: 12px 20px !important;
+    box-sizing: border-box !important;
+  }
+  #panel-mapa .gis-layout {
+    display: flex !important;
+    flex: 1 !important;
+    height: 100% !important;
+    min-height: 480px !important;
+    gap: 16px !important;
+  }
+  #panel-mapa .map-container {
+    display: flex !important;
+    flex: 2 !important;
+    height: 100% !important;
+    min-height: 480px !important;
+    position: relative !important;
+  }
+  #panel-mapa .map-element {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 480px !important;
+  }
+}

@@ -1299,24 +1299,24 @@ const demo5t_Sync = (() => {
     }
     
     if (expectedPass !== password) {
-      return { success: false, mensaje: 'Contrase�a incorrecta (Offline Mock)' };
+      return { success: false, mensaje: 'Contraseña incorrecta (Offline Mock)' };
     }
     
     // Generar permisos mockeados reales seg�n rol
         let mockPerms = [
         { ID_Permiso: 1, Componente_Modulo: 'Buscador_Mapa', Descripcion: 'Ver y filtrar el mapa satelital GIS de lotes', Acceso_Vendedor: true, Acceso_Gerencia: true, Acceso_Administracion: true },
         { ID_Permiso: 2, Componente_Modulo: 'Formulario_Reserva', Descripcion: 'Formulario de reserva y compra de parcelas', Acceso_Vendedor: true, Acceso_Gerencia: true, Acceso_Administracion: true },
-        { ID_Permiso: 3, Componente_Modulo: 'Bandeja_Aprobaciones', Descripcion: 'Aprobaci�n y rechazo de reservas de lotes', Acceso_Vendedor: false, Acceso_Gerencia: true, Acceso_Administracion: true },
+        { ID_Permiso: 3, Componente_Modulo: 'Bandeja_Aprobaciones', Descripcion: 'Aprobación y rechazo de reservas de lotes', Acceso_Vendedor: false, Acceso_Gerencia: true, Acceso_Administracion: true },
         { ID_Permiso: 4, Componente_Modulo: 'Carga_PDF_Promesa', Descripcion: 'Subir documentos firmados de promesas de compraventa', Acceso_Vendedor: false, Acceso_Gerencia: false, Acceso_Administracion: true },
         { ID_Permiso: 5, Componente_Modulo: 'Dashboard_Financiero', Descripcion: 'Panel de m�tricas comerciales y gr�ficos financieros', Acceso_Vendedor: false, Acceso_Gerencia: true, Acceso_Administracion: true },
         { ID_Permiso: 6, Componente_Modulo: 'Mis_Leads', Descripcion: 'Listado y seguimiento de prospectos asignados', Acceso_Vendedor: true, Acceso_Gerencia: false, Acceso_Administracion: true },
         { ID_Permiso: 7, Componente_Modulo: 'Control_Precios', Descripcion: 'Ver y editar precios de lista de las parcelas', Acceso_Vendedor: false, Acceso_Gerencia: true, Acceso_Administracion: true },
         { ID_Permiso: 8, Componente_Modulo: 'Mesa_Documental', Descripcion: 'Firma de promesas y escrituraci�n de lotes', Acceso_Vendedor: false, Acceso_Gerencia: false, Acceso_Administracion: true },
-        { ID_Permiso: 9, Componente_Modulo: 'Cuenta_Corriente', Descripcion: 'Gesti�n y pago de cuotas de financiamiento', Acceso_Vendedor: false, Acceso_Gerencia: false, Acceso_Administracion: true },
-        { ID_Permiso: 10, Componente_Modulo: 'Carga_Datos', Descripcion: 'Administraci�n de entidades base (Vendedores, Proyectos, Etapas)', Acceso_Vendedor: false, Acceso_Gerencia: false, Acceso_Administracion: true },
+        { ID_Permiso: 9, Componente_Modulo: 'Cuenta_Corriente', Descripcion: 'Gestión y pago de cuotas de financiamiento', Acceso_Vendedor: false, Acceso_Gerencia: false, Acceso_Administracion: true },
+        { ID_Permiso: 10, Componente_Modulo: 'Carga_Datos', Descripcion: 'Administración de entidades base (Vendedores, Proyectos, Etapas)', Acceso_Vendedor: false, Acceso_Gerencia: false, Acceso_Administracion: true },
         { ID_Permiso: 11, Componente_Modulo: 'Inventario', Descripcion: 'Consulta de listado de inventario general', Acceso_Vendedor: false, Acceso_Gerencia: true, Acceso_Administracion: true },
         { ID_Permiso: 12, Componente_Modulo: 'Auditoria', Descripcion: 'Registro detallado de acciones ejecutadas en el sistema', Acceso_Vendedor: false, Acceso_Gerencia: false, Acceso_Administracion: true },
-        { ID_Permiso: 13, Componente_Modulo: 'Configuracion_Sistema', Descripcion: 'Configuraci�n de gobernanza, permisos y usuarios', Acceso_Vendedor: false, Acceso_Gerencia: false, Acceso_Administracion: true }
+        { ID_Permiso: 13, Componente_Modulo: 'Configuracion_Sistema', Descripcion: 'Configuración de gobernanza, permisos y usuarios', Acceso_Vendedor: false, Acceso_Gerencia: false, Acceso_Administracion: true }
     ];
     
     return {
