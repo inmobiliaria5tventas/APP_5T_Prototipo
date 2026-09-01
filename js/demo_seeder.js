@@ -8,7 +8,7 @@ window.APP5T_DemoSeeder = (function() {
 
   function cargarEscenarioMarketing() {
     const pfx = 'demo5t_';
-    localStorage.setItem(pfx + 'db_version', '2.0.0');
+    localStorage.setItem(pfx + 'db_version', '5.0.0');
 
     // 1. Clientes Realistas (Pool de 20 clientes)
     const clientes = [
@@ -18,8 +18,8 @@ window.APP5T_DemoSeeder = (function() {
       { id: 4, rut: '16.711.902-4', nombres: 'Claudio', apellidos: 'Aránguiz Peña', telefono: '+56 9 6554 3110', email: 'c.aranguiz@ingenieros.cl', comuna: 'Chillán', profesion: 'Ingeniero Civil', estado_cliente: 'Activo', id_vendedor: 3, fecha_ingreso: '2026-05-10' },
       { id: 5, rut: '17.334.890-5', nombres: 'Valentina', apellidos: 'Silva Morales', telefono: '+56 9 8812 0034', email: 'dra.valentina.silva@clinica.cl', comuna: 'San Carlos', profesion: 'Médica Cirujana', estado_cliente: 'Activo', id_vendedor: 1, fecha_ingreso: '2026-04-18' },
       { id: 6, rut: '13.901.442-8', nombres: 'Felipe', apellidos: 'Morales Soto', telefono: '+56 9 5214 7799', email: 'felipe.morales.arch@gmail.com', comuna: 'Concepción', profesion: 'Arquitecto', estado_cliente: 'Activo', id_vendedor: 2, fecha_ingreso: '2026-07-28' },
-      { id: 7, rut: '18.120.774-1', nombres: 'Daniela', apellidos: 'Fuentes Rivas', telefono: '+56 9 9901 2345', email: 'daniela.fuentes.diseno@gmail.com', comuna: 'Los Ángeles', profesion: 'Diseñadora Industrial', estado_cliente: 'Activo', id_vendedor: 3, fecha_ingreso: '2026-08-10' },
-      { id: 8, rut: '15.890.123-9', nombres: 'Andrés', apellidos: 'Bravo Tapia', telefono: '+56 9 7788 1234', email: 'andres.bravo.agro@gmail.com', comuna: 'Talca', profesion: 'Ingeniero Agrónomo', estado_cliente: 'Activo', id_vendedor: 1, fecha_ingreso: '2026-03-25' },
+      { id: 7, rut: '18.120.774-1', nombres: 'Daniela', apellidos: 'Fuentes Rivas', telefono: '+56 9 9901 2345', email: 'daniela.fuentes.diseno@gmail.com', comuna: 'Los ÁÁngeles', profesion: 'Diseñadora Industrial', estado_cliente: 'Activo', id_vendedor: 3, fecha_ingreso: '2026-08-10' },
+      { id: 8, rut: '15.890.123-9', nombres: 'Andrésí', apellidos: 'Bravo Tapia', telefono: '+56 9 7788 1234', email: 'andres.bravo.agro@gmail.com', comuna: 'Talca', profesion: 'Ingeniero Agrónomo', estado_cliente: 'Activo', id_vendedor: 1, fecha_ingreso: '2026-03-25' },
       { id: 9, rut: '16.234.567-8', nombres: 'Camila', apellidos: 'Rojas Navarrete', telefono: '+56 9 8123 9900', email: 'camila.rojas@gmail.com', comuna: 'Santiago', profesion: 'Odontóloga', estado_cliente: 'Activo', id_vendedor: 2, fecha_ingreso: '2026-06-12' },
       { id: 10, rut: '12.456.789-0', nombres: 'Gonzalo', apellidos: 'Pinto Vera', telefono: '+56 9 6345 8811', email: 'gpinto@construccion.cl', comuna: 'Chillán', profesion: 'Constructor Civil', estado_cliente: 'Activo', id_vendedor: 3, fecha_ingreso: '2026-05-18' },
       { id: 11, rut: '17.890.112-3', nombres: 'Javiera', apellidos: 'Muñoz Cáceres', telefono: '+56 9 9456 1234', email: 'javiera.munoz@empresa.cl', comuna: 'Concepción', profesion: 'Contadora Auditoría', estado_cliente: 'Activo', id_vendedor: 1, fecha_ingreso: '2026-07-05' },
@@ -27,7 +27,7 @@ window.APP5T_DemoSeeder = (function() {
       { id: 13, rut: '13.567.890-K', nombres: 'Patricia', apellidos: 'Salazar Gómez', telefono: '+56 9 8899 0011', email: 'patricia.salazar@notaria.cl', comuna: 'San Carlos', profesion: 'Notaria', estado_cliente: 'Activo', id_vendedor: 3, fecha_ingreso: '2026-08-14' },
       { id: 14, rut: '18.901.234-5', nombres: 'Sebastián', apellidos: 'Castillo Vega', telefono: '+56 9 9012 3456', email: 'scastillo.tech@gmail.com', comuna: 'Santiago', profesion: 'Desarrollador Software', estado_cliente: 'Activo', id_vendedor: 1, fecha_ingreso: '2026-06-01' },
       { id: 15, rut: '16.901.345-6', nombres: 'Loreto', apellidos: 'Valenzuela Rivas', telefono: '+56 9 7123 4567', email: 'loreto.valenzuela@salud.cl', comuna: 'Chillán', profesion: 'Enfermera', estado_cliente: 'Activo', id_vendedor: 2, fecha_ingreso: '2026-05-22' },
-      { id: 16, rut: '14.123.456-7', nombres: 'Hernán', apellidos: 'Garrido Ortiz', telefono: '+56 9 6789 0123', email: 'hernan.garrido@transporte.cl', comuna: 'Los Ángeles', profesion: 'Transportista', estado_cliente: 'Activo', id_vendedor: 3, fecha_ingreso: '2026-03-10' }
+      { id: 16, rut: '14.123.456-7', nombres: 'Hernán', apellidos: 'Garrido Ortiz', telefono: '+56 9 6789 0123', email: 'hernan.garrido@transporte.cl', comuna: 'Los ÁÁngeles', profesion: 'Transportista', estado_cliente: 'Activo', id_vendedor: 3, fecha_ingreso: '2026-03-10' }
     ];
 
     // 2. Vendedores
@@ -45,7 +45,7 @@ window.APP5T_DemoSeeder = (function() {
       { id: 4, nombre_proyecto: 'Los Naranjos', nombre: 'Los Naranjos', ubicacion: 'Sector Los Naranjos', comuna: 'Chillán', coordenadas_centro: { lat: -36.478, lng: -71.838 }, estado_proyecto: 'Activo', nro_etapas: 1 }
     ];
 
-    // 4. Carga base de propiedades desde GeoJSON si están disponibles o desde localStorage
+    // 4. Carga base de propiedades desde GeoJSON si estáán disponibles o desde localStorage
     let props = [];
     try {
       props = JSON.parse(localStorage.getItem(pfx + 'propiedades') || '[]');
@@ -92,7 +92,7 @@ window.APP5T_DemoSeeder = (function() {
         };
         props.push(p);
       } else {
-        p.estado = estado;
+        p.estado = estado; if(estado==='Vendida') p.fecha_venta = options.fecha_escritura || options.fecha_promesa || '2026-08-15';
         p.precio_lista = valorBase;
         p.valor_final = valorBase;
       }
@@ -133,14 +133,14 @@ window.APP5T_DemoSeeder = (function() {
         };
         negs.push(negItem);
 
-        // Si está en Promesada o Vendida, generar cuotas en cuenta corriente
+        // Si estáá en Promesada o Vendida, generar cuotas en cuenta corriente
         if (estado === 'Promesada' || estado === 'Vendida') {
           const totalCuotasGenerar = (options.pie === valorBase) ? 1 : Math.min(nCuotas, 12);
           const cuotasPagadas = (estado === 'Vendida') ? totalCuotasGenerar : (options.cuotasPagadas || 3);
 
           for (let c = 1; c <= totalCuotasGenerar; c++) {
             const isPag = c <= cuotasPagadas;
-            const mesNum = Math.min(12, 3 + c);
+            const mesNum = Math.min(12, Math.max(1, new Date().getMonth() + 1 - cuotasPagadas + c));
             const mesStr = mesNum < 10 ? '0' + mesNum : String(mesNum);
             ctas.push({
               id: ctaIdCounter++,
@@ -148,10 +148,10 @@ window.APP5T_DemoSeeder = (function() {
               id_propiedad: p.id,
               id_cliente: cliente.id,
               nro_cuota: c,
-              monto_cuota: (options.pie === valorBase) ? valorBase : vCuota,
+              valor_cuota: (options.pie === valorBase) ? valorBase : vCuota,
               fecha_vencimiento: `2026-${mesStr}-15`,
               fecha_pago: isPag ? `2026-${mesStr}-14` : null,
-              monto_pagado: isPag ? ((options.pie === valorBase) ? valorBase : vCuota) : 0,
+              valor_pagado: isPag ? ((options.pie === valorBase) ? valorBase : vCuota) : 0,
               estado_cuota: isPag ? 'Pagada' : (c === cuotasPagadas + 1 ? 'Por Vencer' : 'Pendiente')
             });
           }
@@ -162,13 +162,13 @@ window.APP5T_DemoSeeder = (function() {
     // ==========================================
     // 1. PROYECTO: EL COPIHUE (ID 1)
     // ==========================================
-    configurarLote(1, 1, 'Disponible', 1, 1);
+    configurarLote(1, 1, 'Reservada', 2, 1, { fecha_reserva: '2026-08-15', ficha_abogado_generada: true });
     configurarLote(1, 2, 'Vendida', 8, 1, { fecha_reserva: '2026-03-10', fecha_promesa: '2026-03-25', fecha_escritura: '2026-05-18', autorizado_escriturar: 'SI' });
     configurarLote(1, 3, 'Vendida', 14, 2, { fecha_reserva: '2026-04-12', fecha_promesa: '2026-04-28', fecha_escritura: '2026-06-15', autorizado_escriturar: 'SI' });
     configurarLote(1, 4, 'Promesada', 4, 3, { fecha_reserva: '2026-06-10', fecha_promesa: '2026-06-28', promesa_firmada: true, cuotasPagadas: 3 });
-    configurarLote(1, 5, 'Disponible', 1, 1);
+    configurarLote(1, 5, 'Reservada', 3, 2, { fecha_reserva: '2026-08-10', ficha_abogado_generada: false });
     configurarLote(1, 6, 'Reservada', 9, 2, { fecha_reserva: '2026-08-18', ficha_abogado_generada: true, notas: '[FICHA_ABOGADO:GENERADA] Ficha lista para firma notarial Copihue.' });
-    configurarLote(1, 7, 'Disponible', 1, 1);
+    configurarLote(1, 7, 'Reservada', 7, 3, { fecha_reserva: '2026-08-20', ficha_abogado_generada: true });
     configurarLote(1, 8, 'Promesada', 12, 1, { fecha_reserva: '2026-06-15', fecha_promesa: '2026-07-02', promesa_firmada: true, cuotasPagadas: 2 });
     configurarLote(1, 9, 'Disponible', 1, 1);
     configurarLote(1, 10, 'Pendiente', 16, 3, { fecha_reserva: '2026-08-28', notas: 'Transferencia de reserva recibida $3.500.000.' });
@@ -247,11 +247,16 @@ window.APP5T_DemoSeeder = (function() {
     // AUTO-POBLAR LOTES RESTANTES (Para llenar mapas 85% para video)
     // ==========================================
     props.forEach(p => {
-      if (!p.estado || p.estado === 'Disponible') {
-        const rand = Math.random();
-        if (rand < 0.85) { // 85% chance of being occupied
-          const estados = ['Vendida', 'Vendida', 'Promesada', 'Reservada', 'Pendiente'];
-          const newEstado = estados[Math.floor(Math.random() * estados.length)];
+      let newEstado = p.estado;
+      if (!newEstado || newEstado === 'Disponible' || newEstado === 'Venta_Directa') {
+          const rand = Math.random();
+          if (rand < 0.85) {
+              const estados = ['Vendida', 'Vendida', 'Promesada', 'Reservada', 'Pendiente'];
+              newEstado = estados[Math.floor(Math.random() * estados.length)];
+          }
+      }
+      
+      if (newEstado && newEstado !== 'Disponible' && newEstado !== 'Venta_Directa') {
           const cliIndex = Math.floor(Math.random() * 16) + 1; // 1 to 16
           const vendId = Math.floor(Math.random() * 3) + 1; // 1 to 3
           
@@ -267,7 +272,6 @@ window.APP5T_DemoSeeder = (function() {
           if (numLote) {
              configurarLote(p.id_proyecto, numLote, newEstado, cliIndex, vendId, options);
           }
-        }
       }
     });
 

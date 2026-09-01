@@ -1169,7 +1169,7 @@ const demo5t_Sync = (() => {
       let idProy = prop.id_proyecto;
       if (!idProy && prop.id_etapa) {
         if (stages.length > 0) {
-          const stage = stages.find(s => s.id === prop.id_etapa);
+          const stage = stages.find(sí => sí.id === prop.id_etapa);
           if (stage) {
             idProy = stage.id_proyecto;
           }
@@ -1302,16 +1302,16 @@ const demo5t_Sync = (() => {
       return { success: false, mensaje: 'Contraseña incorrecta (Offline Mock)' };
     }
     
-    // Generar permisos mockeados reales seg�n rol
+    // Generar permisos mockeados reales segn rol
         let mockPerms = [
         { ID_Permiso: 1, Componente_Modulo: 'Buscador_Mapa', Descripcion: 'Ver y filtrar el mapa satelital GIS de lotes', Acceso_Vendedor: true, Acceso_Gerencia: true, Acceso_Administracion: true },
         { ID_Permiso: 2, Componente_Modulo: 'Formulario_Reserva', Descripcion: 'Formulario de reserva y compra de parcelas', Acceso_Vendedor: true, Acceso_Gerencia: true, Acceso_Administracion: true },
         { ID_Permiso: 3, Componente_Modulo: 'Bandeja_Aprobaciones', Descripcion: 'Aprobación y rechazo de reservas de lotes', Acceso_Vendedor: false, Acceso_Gerencia: true, Acceso_Administracion: true },
         { ID_Permiso: 4, Componente_Modulo: 'Carga_PDF_Promesa', Descripcion: 'Subir documentos firmados de promesas de compraventa', Acceso_Vendedor: false, Acceso_Gerencia: false, Acceso_Administracion: true },
-        { ID_Permiso: 5, Componente_Modulo: 'Dashboard_Financiero', Descripcion: 'Panel de m�tricas comerciales y gr�ficos financieros', Acceso_Vendedor: false, Acceso_Gerencia: true, Acceso_Administracion: true },
+        { ID_Permiso: 5, Componente_Modulo: 'Dashboard_Financiero', Descripcion: 'Panel de mtricas comerciales y grficos financieros', Acceso_Vendedor: false, Acceso_Gerencia: true, Acceso_Administracion: true },
         { ID_Permiso: 6, Componente_Modulo: 'Mis_Leads', Descripcion: 'Listado y seguimiento de prospectos asignados', Acceso_Vendedor: true, Acceso_Gerencia: false, Acceso_Administracion: true },
         { ID_Permiso: 7, Componente_Modulo: 'Control_Precios', Descripcion: 'Ver y editar precios de lista de las parcelas', Acceso_Vendedor: false, Acceso_Gerencia: true, Acceso_Administracion: true },
-        { ID_Permiso: 8, Componente_Modulo: 'Mesa_Documental', Descripcion: 'Firma de promesas y escrituraci�n de lotes', Acceso_Vendedor: false, Acceso_Gerencia: false, Acceso_Administracion: true },
+        { ID_Permiso: 8, Componente_Modulo: 'Mesa_Documental', Descripcion: 'Firma de promesas y escrituracin de lotes', Acceso_Vendedor: false, Acceso_Gerencia: false, Acceso_Administracion: true },
         { ID_Permiso: 9, Componente_Modulo: 'Cuenta_Corriente', Descripcion: 'Gestión y pago de cuotas de financiamiento', Acceso_Vendedor: false, Acceso_Gerencia: false, Acceso_Administracion: true },
         { ID_Permiso: 10, Componente_Modulo: 'Carga_Datos', Descripcion: 'Administración de entidades base (Vendedores, Proyectos, Etapas)', Acceso_Vendedor: false, Acceso_Gerencia: false, Acceso_Administracion: true },
         { ID_Permiso: 11, Componente_Modulo: 'Inventario', Descripcion: 'Consulta de listado de inventario general', Acceso_Vendedor: false, Acceso_Gerencia: true, Acceso_Administracion: true },
@@ -1642,7 +1642,7 @@ const demo5t_Sync = (() => {
 
   async function testConnection() {
     if (!isConfigured()) {
-      return { success: false, message: 'La conexión con Supabase no está configurada.' };
+      return { success: false, message: 'La conexión con Supabase no estáá configurada.' };
     }
     try {
       const resp = await fetch(`${CONFIG.SUPABASE_URL}00_gobernanza_permisos?limit=1`, {

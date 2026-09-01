@@ -94,7 +94,7 @@
         </div>
         
         <div class="flex flex-col gap-2">
-          <label for="login-password" class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Contraseña</label>
+          <label for="login-password" class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Contrasea</label>
           <div class="relative">
             <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500">
               <i class="fa-solid fa-lock"></i>
@@ -191,7 +191,7 @@
             <span id="user-name" class="profile-name">Usuario</span>
             <span id="user-role" class="profile-role">Administración General</span>
           </div>
-          <div class="profile-avatar" id="btn-logout" aria-label="Cerrar Sesión" title="Cerrar Sesión" style="cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='rgba(239, 68, 68, 0.15)'; this.style.color='#ef4444';" onmouseout="this.style.background=''; this.style.color='';">
+          <div class="profile-avatar" id="btn-logout" aria-label="Cerrar Sesin" title="Cerrar Sesin" style="cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='rgba(239, 68, 68, 0.15)'; this.style.color='#ef4444';" onmouseout="this.style.background=''; this.style.color='';">
             <i class="fa-solid fa-user"></i>
           </div>
         </div>
@@ -418,7 +418,7 @@
               <!-- Cinematic & Relief 3D Tools (Visible only when 3D is active) -->
               <div id="map-3d-action-bar" style="display: none; position: absolute; bottom: 20px; left: 14px; z-index: 50; gap: 6px; align-items: center; flex-wrap: wrap; background: rgba(8, 24, 38, 0.92); backdrop-filter: blur(12px); padding: 6px 10px; border-radius: 10px; border: 1px solid rgba(0, 229, 255, 0.3); box-shadow: 0 6px 20px rgba(0,0,0,0.5);">
                 <button type="button" id="btn-3d-orbit" onclick="window.APP5T_Map3D &amp;&amp; window.APP5T_Map3D.toggleCinematicOrbit()" style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #10b981; font-weight: 700; font-size: 0.76rem; padding: 5px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
-                  <i class="fa-solid fa-video"></i> Giro 360°
+                  <i class="fa-solid fa-video"></i> Giro 360
                 </button>
                 <button type="button" onclick="window.APP5T_Map3D &amp;&amp; window.APP5T_Map3D.setPitchAngle(70)" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; font-size: 0.74rem; padding: 5px 8px; border-radius: 6px; cursor: pointer;">
                   <i class="fa-solid fa-mountain"></i> Relieve
@@ -1031,7 +1031,7 @@
         <div class="tab-panel" id="panel-auditoria">
           <div class="data-card">
             <h3 class="card-title">Registro de Auditoría</h3>
-            <p class="card-subtitle">Log cronol?gico de acciones del sistema</p>
+            <p class="card-subtitle">Log cronol?gico de Acciones del sistema</p>
             <div class="table-responsive">
               <table class="premium-table">
                 <thead>
@@ -1176,10 +1176,10 @@
 
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- jsPDF (expone window.jspdf.jsPDF para generación directa de PDFs) -->
+  <!-- jsPDF (expone window.jspdf.jsPDF para generacin directa de PDFs) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <!-- SheetJS para exportación a Excel -->
+  <!-- SheetJS para exportacin a Excel -->
   <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 
   <!-- GeoJSON Layers (spatial data only) -->
@@ -1263,7 +1263,7 @@
       });
     });
   </script>
-    <!-- Modal Reprogramación Deuda -->
+    <!-- Modal Reprogramacin Deuda -->
   
   </div>
 <div class="modal-overlay" id="modal-reprogramacion" onclick="if(event.target===this) this.classList.remove('visible')">
@@ -1302,7 +1302,7 @@
         
         <div style="margin-top: 25px; display: flex; gap: 10px; justify-content: flex-end;">
           <button type="button" class="btn btn-ghost" onclick="document.getElementById('modal-reprogramacion').classList.remove('visible')">Cancelar</button>
-          <button type="button" class="btn btn-warning" onclick="demo5t_Forms._procesarReprogramacion(event)"><i class="fa-solid fa-check"></i> Aplicar Reprogramación</button>
+          <button type="button" class="btn btn-warning" onclick="demo5t_Forms._procesarReprogramacion(event)"><i class="fa-solid fa-check"></i> Aplicar Reprogramacin</button>
         </div>
       </div>
     </div>
@@ -1389,6 +1389,7 @@
       }, 120);
     });
     </script>
+<script>window.addEventListener('load', function() { if(localStorage.getItem('demo5t_db_version') !== '5.0.0' && typeof APP5T_DemoSeeder !== 'undefined') { APP5T_DemoSeeder.cargarEscenarioMarketing(); } });</script>
 </body>
 </html>
 

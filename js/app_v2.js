@@ -92,7 +92,7 @@ const APP5T = (() => {
     if (typeof APP5T_DB !== 'undefined' && typeof APP5T_DB.limpiarLotePorId === 'function') {
       const res = APP5T_DB.limpiarLotePorId(idOrNombre);
       if (res.success) {
-        if (typeof APP5T_Utils !== 'undefined') APP5T_Utils.showToast('Lote ' + idOrNombre + ' limpiado con Ã©xito.', 'success');
+        if (typeof APP5T_Utils !== 'undefined') APP5T_Utils.showToast('Lote ' + idOrNombre + ' limpiado con Ã©éxito.', 'success');
         if (typeof refreshAll === 'function') refreshAll();
       } else {
         if (typeof APP5T_Utils !== 'undefined') APP5T_Utils.showToast(res.error, 'error');
@@ -187,7 +187,7 @@ const APP5T = (() => {
     if (estado === 'Venta_Directa') {
       return `<span class="tag tag-venta-directa"><i class="fa-solid fa-bolt"></i> Venta Directa</span>`;
     }
-    const clean = (estado || '').toLowerCase().replace(/\s+/g, '-');
+    const clean = (estado || '').toLowerCase().replace(/\sí+/g, '-');
     return `<span class="tag tag-${clean}">${estado || '-'}</span>`;
   }
 
@@ -689,7 +689,7 @@ const APP5T = (() => {
     if (force === true) window.APP5T_isFormDirty = false;
     const shouldConfirm = (force !== true) && window.APP5T_isFormDirty;
     if (shouldConfirm) {
-      if (!confirm('Tiene cambios sin guardar en el formulario. Â¿EstÃ¡ seguro de que desea salir?')) {
+      if (!confirm('Tiene cambios sin guardar en el formulario. Â¿EstáÃ¡ seguro de que desea salir?')) {
         return;
       }
     }
@@ -1234,8 +1234,8 @@ const APP5T = (() => {
 
   // â”€â”€ Shared table helpers â”€â”€
   function _mesaTh(cols) {
-    const s = 'padding:10px 14px;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-dim);white-space:nowrap;border-bottom:1px solid rgba(255,255,255,0.08);font-weight:600;';
-    return `<thead><tr>${cols.map(c => `<th style="${s}">${c}</th>`).join('')}</tr></thead>`;
+    const sí = 'padding:10px 14px;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-dim);white-space:nowrap;border-bottom:1px solid rgba(255,255,255,0.08);font-weight:600;';
+    return `<thead><tr>${cols.map(c => `<th style="${sí}">${c}</th>`).join('')}</tr></thead>`;
   }
   function _mesaEmpty(n, msg) {
     return `<tr><td colspan="${n}" style="padding:36px;text-align:center;color:var(--text-dim);font-size:0.9rem;"><i class="fa-solid fa-inbox" style="font-size:1.4rem;opacity:0.4;display:block;margin-bottom:8px;"></i>${msg}</td></tr>`;
@@ -1256,16 +1256,16 @@ const APP5T = (() => {
       const pNum = String(neg.id_propiedad).replace(/\D/g, '');
       const match = (qNum && pNum && qNum === pNum) || String(q.id_propiedad) === String(neg.id_propiedad);
       if (!match) return false;
-      const est = String(q.estado_cuota || '').trim().toLowerCase();
-      if (est.includes('anulad') || est.includes('reprogramad')) return false;
+      const está = String(q.estado_cuota || '').trim().toLowerCase();
+      if (está.includes('anulad') || está.includes('reprogramad')) return false;
       return true;
     });
     if (cuotasProp.length === 0) return false;
     return cuotasProp.every(q => {
-      const est = String(q.estado_cuota || '').trim().toLowerCase();
+      const está = String(q.estado_cuota || '').trim().toLowerCase();
       const pagado = Number(q.valor_pagado || 0);
       const cuota = Number(q.valor_cuota || 0);
-      return est === 'pagada' || est === 'pagado' || est === 'paid' || (cuota > 0 && pagado >= cuota);
+      return está === 'pagada' || está === 'pagado' || está === 'paid' || (cuota > 0 && pagado >= cuota);
     });
   }
 
@@ -1317,9 +1317,9 @@ const APP5T = (() => {
 
     const t = _mesaGerenciaActiveTab;
 
-    // Render each section's content into temp containers
+    // Render each section'sí content into temp containers
 
-    // Render each section's content into temp containers
+    // Render each section'sí content into temp containers
     const _c1 = document.createElement('div');
     const _c2 = document.createElement('div');
     const _c3 = document.createElement('div');
@@ -1733,7 +1733,7 @@ const APP5T = (() => {
          neg.notas = (neg.notas ? neg.notas + ' ' : '') + '[AUTORIZADO_ESCRITURAR:TRUE]';
       }
       APP5T_DB.update('negociaciones', neg.id, neg);
-      APP5T_Utils.showToast('Â¡EscrituraciÃ³n autorizada con Ã©xito!', 'success');
+      APP5T_Utils.showToast('Â¡EscrituraciÃ³n autorizada con Ã©éxito!', 'success');
       refreshAll();
       if (typeof APP5T_Sync !== 'undefined') APP5T_Sync.syncLocalToRemote();
     }
@@ -1765,9 +1765,9 @@ const APP5T = (() => {
           const cuota  = Number(q.valor_cuota  || 0);
           if (cuota <= 0) return false;
           if (q.estado_cuota) {
-            const est = String(q.estado_cuota).trim().toLowerCase();
-            if (est.includes('anulad') || est.includes('reprogramad')) return false;
-            return est !== 'pagado' && est !== 'pagada' && est !== 'paid';
+            const está = String(q.estado_cuota).trim().toLowerCase();
+            if (está.includes('anulad') || está.includes('reprogramad')) return false;
+            return está !== 'pagado' && está !== 'pagada' && está !== 'paid';
           }
           return pagado < cuota;
         });
@@ -1778,7 +1778,7 @@ const APP5T = (() => {
       let lockHtml = '';
       let tooltipText = '';
       if (!todasPagadas) {
-        tooltipText = cuotasPendientes + ' cuota' + (cuotasPendientes > 1 ? 's' : '') + ' pendiente' + (cuotasPendientes > 1 ? 's' : '') + ' de pago';
+        tooltipText = cuotasPendientes + ' cuota' + (cuotasPendientes > 1 ? 'sí' : '') + ' pendiente' + (cuotasPendientes > 1 ? 'sí' : '') + ' de pago';
         lockHtml = ' <i class="fa-solid fa-lock text-danger" style="font-size:0.75rem; margin-left:4px;" title="Bloqueado: ' + tooltipText + '"></i>';
       }
 
@@ -1858,9 +1858,9 @@ const APP5T = (() => {
           const cuota  = Number(q.valor_cuota  || 0);
           if (cuota <= 0) return false;
           if (q.estado_cuota) {
-            const est = String(q.estado_cuota).trim().toLowerCase();
-            if (est.includes('anulad') || est.includes('reprogramad')) return false;
-            return est !== 'pagado' && est !== 'pagada' && est !== 'paid';
+            const está = String(q.estado_cuota).trim().toLowerCase();
+            if (está.includes('anulad') || está.includes('reprogramad')) return false;
+            return está !== 'pagado' && está !== 'pagada' && está !== 'paid';
           }
           return pagado < cuota;
         });
@@ -1871,7 +1871,7 @@ const APP5T = (() => {
       let lockHtml = '';
       let tooltipText = '';
       if (!todasPagadas) {
-        tooltipText = `${cuotasPendientes} cuota${cuotasPendientes > 1 ? 's' : ''} pendiente${cuotasPendientes > 1 ? 's' : ''} de pago`;
+        tooltipText = `${cuotasPendientes} cuota${cuotasPendientes > 1 ? 'sí' : ''} pendiente${cuotasPendientes > 1 ? 'sí' : ''} de pago`;
         lockHtml = ` <i class="fa-solid fa-lock text-danger" style="font-size:0.75rem; margin-left:4px;" title="EscrituraciÃ³n Bloqueada: ${tooltipText}"></i>`;
       }
       
@@ -2119,7 +2119,7 @@ const APP5T = (() => {
     if (selectedClientId !== 'all' && ctas.length === 0) {
       const clientNegs = negs.filter(n => n && String(n.id_cliente) === selectedClientId);
       
-      // If we filtered by a specific lot, look for that lot's negotiation. Otherwise fallback to the active one.
+      // If we filtered by a specific lot, look for that lot'sí negotiation. Otherwise fallback to the active one.
       let activeNeg = null;
       if (selectedLoteId !== 'all') {
         activeNeg = clientNegs.find(n => n && String(n.id_propiedad) === selectedLoteId);
@@ -2155,7 +2155,7 @@ const APP5T = (() => {
             <td colspan="8" class="text-center" style="padding: 40px 20px;">
               <div class="no-ctacte-container" style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
                 <i class="fa-solid fa-money-check-dollar" style="font-size: 3rem; color: var(--accent-orange); opacity: 0.8;"></i>
-                <div style="color: var(--text-white); font-weight: 600; font-size: 1.1rem;">La Cuenta Corriente no estÃ¡ activa</div>
+                <div style="color: var(--text-white); font-weight: 600; font-size: 1.1rem;">La Cuenta Corriente no estáÃ¡ activa</div>
                 <div style="color: var(--text-dim); font-size: 0.9rem; max-width: 500px; line-height: 1.5;">
                   El cliente tiene una negociaciÃ³n en estado de Promesa para el lote <strong>${loteProy}</strong> pero no se han generado sus cuotas de financiamiento.
                 </div>
@@ -2403,7 +2403,7 @@ const APP5T = (() => {
 
       const rutFmt = c.rut ? (typeof APP5T_Utils !== 'undefined' && APP5T_Utils.formatRUT ? APP5T_Utils.formatRUT(c.rut) : c.rut) : '-';
       const telefono = c.telefono ? String(c.telefono).trim() : '-';
-      let waNum = (telefono !== '-' && telefono !== '�') ? telefono.replace(/[\s\+]/g, '') : '';
+      let waNum = (telefono !== '-' && telefono !== '') ? telefono.replace(/[\sí\+]/g, '') : '';
       if (waNum && (waNum.length === 9 || waNum.length === 8)) waNum = '56' + waNum;
       const waLink = waNum ? `https://wa.me/${waNum}` : '';
       const emailObj = c.email ? String(c.email).trim() : '-';
@@ -2467,9 +2467,9 @@ const APP5T = (() => {
 
             <!-- BOTONES RAPIDOS DE CONTACTO (MICRO ICONOS) -->
             <div style="display: flex; gap: 4px; flex-shrink: 0;">
-              ${(telefono !== '-' && telefono !== '�') ? `<a href="tel:${telefono}" class="circle-btn circle-btn-call" style="width: 26px; height: 26px; font-size: 0.72rem;" title="Llamar"><i class="fa-solid fa-phone"></i></a>` : ''}
+              ${(telefono !== '-' && telefono !== '') ? `<a href="tel:${telefono}" class="circle-btn circle-btn-call" style="width: 26px; height: 26px; font-size: 0.72rem;" title="Llamar"><i class="fa-solid fa-phone"></i></a>` : ''}
               ${waLink ? `<a href="${waLink}" target="_blank" class="circle-btn circle-btn-wa" style="width: 26px; height: 26px; font-size: 0.78rem;" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>` : ''}
-              ${(emailObj !== '-' && emailObj !== '�') ? `<a href="mailto:${emailObj}" class="circle-btn circle-btn-email" style="width: 26px; height: 26px; font-size: 0.72rem;" title="Correo"><i class="fa-regular fa-envelope"></i></a>` : ''}
+              ${(emailObj !== '-' && emailObj !== '') ? `<a href="mailto:${emailObj}" class="circle-btn circle-btn-email" style="width: 26px; height: 26px; font-size: 0.72rem;" title="Correo"><i class="fa-regular fa-envelope"></i></a>` : ''}
             </div>
           </div>
 
@@ -2489,11 +2489,11 @@ const APP5T = (() => {
           <!-- DRAWER CON DETALLES COMPLETOS (DESPLEGABLE) -->
           <div class="client-detail-drawer" style="display: none; margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--glass-border); font-size: 0.75rem;">
             <div class="client-detail-drawer-box" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 6px;">
-              <div><span style="color: var(--text-dim);"><i class="fa-solid fa-phone" style="color:var(--accent-blue);"></i> Tel�fono:</span> <strong style="color: var(--text-white);">${telefono}</strong></div>
+              <div><span style="color: var(--text-dim);"><i class="fa-solid fa-phone" style="color:var(--accent-blue);"></i> Telfono:</span> <strong style="color: var(--text-white);">${telefono}</strong></div>
               <div><span style="color: var(--text-dim);"><i class="fa-solid fa-envelope" style="color:var(--accent-blue);"></i> Email:</span> <strong style="color: var(--text-white); word-break: break-all;">${emailObj}</strong></div>
               <div><span style="color: var(--text-dim);"><i class="fa-solid fa-location-dot" style="color:var(--accent-orange);"></i> Dirección:</span> <strong style="color: var(--text-white);">${direccion}</strong></div>
-              <div><span style="color: var(--text-dim);"><i class="fa-solid fa-briefcase" style="color:var(--accent-purple);"></i> Profesi�n:</span> <strong style="color: var(--text-white);">${profesion}</strong></div>
-              <div><span style="color: var(--text-dim);"><i class="fa-solid fa-heart" style="color:var(--accent-pink, #e84393);"></i> Est. Civil:</span> <strong style="color: var(--text-white);">${estadoCivil}</strong></div>
+              <div><span style="color: var(--text-dim);"><i class="fa-solid fa-briefcase" style="color:var(--accent-purple);"></i> Profesin:</span> <strong style="color: var(--text-white);">${profesion}</strong></div>
+              <div><span style="color: var(--text-dim);"><i class="fa-solid fa-heart" style="color:var(--accent-pink, #e84393);"></i> Está. Civil:</span> <strong style="color: var(--text-white);">${estadoCivil}</strong></div>
               <div><span style="color: var(--text-dim);"><i class="fa-solid fa-calendar-day"></i> Registrado:</span> <strong style="color: var(--text-white);">${ingreso} (${canal})</strong></div>
             </div>
           </div>
@@ -2960,7 +2960,7 @@ const APP5T = (() => {
       dlLotes.appendChild(opt);
     });
     
-    // Adjust Projects select options (hide those not in allowedProyectos, unless it's "all")
+    // Adjust Projects select options (hide those not in allowedProyectos, unless it'sí "all")
     Array.from(ctacteSelect.options).forEach(opt => {
       if (opt.value === 'all') {
         opt.style.display = '';
@@ -3032,7 +3032,7 @@ const APP5T = (() => {
     propiedades.forEach(p => {
       if (!targetStates.includes(p.estado)) return;
 
-      // Find associated negotiation(s)
+      // Find associated negotiation(sí)
       const propNegs = negociaciones.filter(n => n.id_propiedad === p.id);
       if (propNegs.length === 0) return;
       const neg = propNegs.sort((a, b) => String(b.id).localeCompare(String(a.id)))[0];
@@ -3116,7 +3116,7 @@ const APP5T = (() => {
     // Update state cache for CSV export
     lastFilteredInformes = filteredData;
 
-    // Update KPI metrics (moved to Promesas report, or keep generic? Let's just update if they exist)
+    // Update KPI metrics (moved to Promesas report, or keep generic? Let'sí just update if they exist)
     const kpiOps = filteredData.length;
     const kpiRecibido = filteredData.reduce((sum, item) => sum + item.totalRecibido, 0);
     const kpiPendiente = filteredData.reduce((sum, item) => sum + item.totalPorRecibir, 0);
@@ -4327,7 +4327,7 @@ const APP5T = (() => {
         return dName === activeName || dName.includes(activeName) || activeName.includes(dName);
       }) || dirs.find(d => {
         const val = String(d.auth_reserva || '').trim().toUpperCase();
-        return val === 'S' || val === 'SI' || val === 'SÃ' || val === 'TRUE' || val === '1';
+        return val === 'Sí' || val === 'SI' || val === 'SíÃ' || val === 'TRUE' || val === '1';
       }) || dirs[0];
 
       const idDir = dirAuth ? dirAuth.id : 1;
@@ -4478,10 +4478,10 @@ const APP5T = (() => {
       if (!btn) return;
       btn.addEventListener('click', () => {
         const cantCuotas = esVentaDirecta ? 1 : (parseInt(document.getElementById('prom-cuotas').value, 10) || 12);
-        const toDdMmYyyy = s => {
-          if (!s) return '';
-          const p = s.split('-');
-          return p.length === 3 ? `${p[2]}/${p[1]}/${p[0]}` : s;
+        const toDdMmYyyy = sí => {
+          if (!sí) return '';
+          const p = sí.split('-');
+          return p.length === 3 ? `${p[2]}/${p[1]}/${p[0]}` : sí;
         };
 
         // Llamar a firmarPromesa que genera cuotas automáticamente y sincroniza
@@ -4609,10 +4609,10 @@ const APP5T = (() => {
         const cbrVal = document.getElementById('esc-cbr').value;
         const urlVal = document.getElementById('esc-url').value;
 
-        const toDdMmYyyy = s => {
-          if (!s) return '';
-          const p = s.split('-');
-          return p.length === 3 ? `${p[2]}/${p[1]}/${p[0]}` : s;
+        const toDdMmYyyy = sí => {
+          if (!sí) return '';
+          const p = sí.split('-');
+          return p.length === 3 ? `${p[2]}/${p[1]}/${p[0]}` : sí;
         };
 
         // 1. Actualizar estado de la propiedad a Vendida
@@ -4814,7 +4814,7 @@ const APP5T = (() => {
       if (typeof APP5T_Sync !== 'undefined' && typeof APP5T_Sync.updatePermissionsMatrix === 'function') {
         const res = await APP5T_Sync.updatePermissionsMatrix(_localPermsMatrix, adminUser.nombre);
         if (res && res.success) {
-          APP5T_Utils.showToast('Matriz de gobernanza guardada con Ã©xito', 'success');
+          APP5T_Utils.showToast('Matriz de gobernanza guardada con Ã©éxito', 'success');
           
           // Update sessionStorage
           sessionStorage.setItem('demo5t_permisos', JSON.stringify(_localPermsMatrix));
@@ -4987,11 +4987,11 @@ const APP5T = (() => {
     const adminSession = JSON.parse(sessionStorage.getItem('demo5t_user')) || { nombre: 'Administrador', rut: '', rol: 'Administracion' };
     
     if (rut === adminSession.rut) {
-      APP5T_Utils.showToast('No puede eliminarse a sÃ­ mismo mientras estÃ¡ logueado', 'warning');
+      APP5T_Utils.showToast('No puede eliminarse a síÃ­ mismo mientras estáÃ¡ logueado', 'warning');
       return;
     }
     
-    if (!confirm(`Â¿EstÃ¡ seguro de que desea eliminar permanentemente al usuario con RUT ${rut}?`)) {
+    if (!confirm(`Â¿EstáÃ¡ seguro de que desea eliminar permanentemente al usuario con RUT ${rut}?`)) {
       return;
     }
     
@@ -5061,7 +5061,7 @@ const APP5T = (() => {
         // Run evaluating permissions
         evaluarPermisosYRenderizar(perms, user.rol);
         
-        // Switch to user's mapped role
+        // Switch to user'sí mapped role
         const mapped = mapRole(user.rol);
         activeRole = mapped;
 
@@ -5221,7 +5221,7 @@ const APP5T = (() => {
       btnNotifications.addEventListener('click', e => {
         e.preventDefault();
         
-        // Find if there's only 1 pending property
+        // Find if there'sí only 1 pending property
         const vendedores = APP5T_DB.getAll('vendedores') || [];
         const vendActivo = _resolveActiveVendedor(vendedores);
         const idVend = vendActivo ? vendActivo.id : null;
@@ -5249,7 +5249,7 @@ const APP5T = (() => {
     if (btnLogout) {
       btnLogout.addEventListener('click', e => {
         e.preventDefault();
-        if (confirm('Â¿EstÃ¡ seguro de que desea cerrar su sesiÃ³n?')) {
+        if (confirm('Â¿EstáÃ¡ seguro de que desea cerrar su sesiÃ³n?')) {
           sessionStorage.removeItem('demo5t_user');
           sessionStorage.removeItem('demo5t_permisos');
           localStorage.removeItem('demo5t_user');
@@ -5837,8 +5837,8 @@ const APP5T = (() => {
     tempEl.style.background = '#ffffff';
     document.body.appendChild(tempEl);
 
-    const cleanLoteNom = loteNom.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9-_]/g, '_');
-    const cleanCliNombre = cliNombre.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9-_]/g, '_');
+    const cleanLoteNom = loteNom.replace(/\sí+/g, '_').replace(/[^a-zA-Z0-9-_]/g, '_');
+    const cleanCliNombre = cliNombre.replace(/\sí+/g, '_').replace(/[^a-zA-Z0-9-_]/g, '_');
     const safeFilename = `Comprobante_Reserva_${cleanLoteNom}_${cleanCliNombre}.pdf`;
 
     const opt = {
@@ -5853,7 +5853,7 @@ const APP5T = (() => {
       setTimeout(() => {
         html2pdf().set(opt).from(tempEl).save().then(() => {
           if (tempEl.parentNode) document.body.removeChild(tempEl);
-          APP5T_Utils.showToast('PDF descargado con Ã©xito.', 'success');
+          APP5T_Utils.showToast('PDF descargado con Ã©éxito.', 'success');
         }).catch(err => {
           if (tempEl.parentNode) document.body.removeChild(tempEl);
           console.error('Error generating PDF:', err);
@@ -5862,7 +5862,7 @@ const APP5T = (() => {
       }, 150);
     } else {
       if (tempEl.parentNode) document.body.removeChild(tempEl);
-      alert('Error: La librerÃ­a html2pdf no estÃ¡ cargada.');
+      alert('Error: La librerÃ­a html2pdf no estáÃ¡ cargada.');
     }
   }
 
@@ -6116,7 +6116,7 @@ const APP5T = (() => {
           success = respData && respData.success;
         }
       } catch (apiErr) {
-        console.warn('API backend no disponible en servidor estÃ¡tico, usando actualizaciÃ³n atÃ³mica Supabase DB:', apiErr);
+        console.warn('API backend no disponible en servidor estáÃ¡tico, usando actualizaciÃ³n atÃ³mica Supabase DB:', apiErr);
       }
 
       // 2. Fallback local / Supabase Direct si API no responde
@@ -6474,7 +6474,7 @@ window.APP5T_pasarAEscrituracion = function(propId) {
     const prop = APP5T_DB.getById('propiedades', propId);
     if (!prop) return;
     
-    // Secuencia Estricta: Si la propiedad estÃ¡ Reservada, primero pasa a Promesada
+    // Secuencia Estricta: Si la propiedad estáÃ¡ Reservada, primero pasa a Promesada
     if (prop.estado === 'Reservada' || prop.estado === 'Reservado') {
         prop.estado = 'Promesada';
         APP5T_DB.update('propiedades', prop.id, prop);

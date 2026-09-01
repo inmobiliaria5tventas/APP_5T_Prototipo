@@ -1,5 +1,5 @@
-﻿/* ==========================================================================
-   APP5T_Charts  –  Dashboard KPIs & Charts (Chart.js)
+/* ==========================================================================
+   APP5T_Charts    Dashboard KPIs & Charts (Chart.js)
    5 Tierras CRM & GIS
    ========================================================================== */
 
@@ -8,10 +8,10 @@ const APP5T_Charts = (function () {
 
     // Desactivar animaciones globales en Chart.js para evitar parpadeos/movimiento en la sincronizacion automatica
     if (typeof Chart !== 'undefined') {
-        Chart.defaults.animation = false;
+        Chart.defaults.animation = false; Chart.defaults.color = '#a0c8d8';  Chart.defaults.plugins.legend.labels.color = '#a0c8d8';
     }
 
-    // ── State ──────────────────────────────────────────────────────────────
+    // -- State --------------------------------------------------------------
     let compositionChart = null;
     let evolucionVentasChart = null;
     let projectsChart    = null;
@@ -30,7 +30,7 @@ const APP5T_Charts = (function () {
     let selectedYearCashflow = new Date().getFullYear();
     let yearsPopulated = false;
 
-    // ── Status colours (mirrors map.js) ────────────────────────────────────
+    // -- Status colours (mirrors map.js) ------------------------------------
     const COLORS = {
         'Disponible': 'rgba(255, 255, 255, 0.6)',
         'Pendiente':  '#f1c40f',
@@ -39,7 +39,7 @@ const APP5T_Charts = (function () {
         'Vendida':    '#2ecc71'
     };
 
-    // ── KPI icon map ───────────────────────────────────────────────────────
+    // -- KPI icon map -------------------------------------------------------
     const KPI_ICONS = {
         leads:            'fa-solid fa-users',
         reservasEnviadas: 'fa-solid fa-paper-plane',
@@ -55,7 +55,7 @@ const APP5T_Charts = (function () {
         promesasActivas:  'fa-solid fa-file-signature'
     };
 
-    // ── Helper: build a single KPI card HTML ───────────────────────────────
+    // -- Helper: build a single KPI card HTML -------------------------------
     function _kpiCard(icon, label, value) {
         return (
             '<div class="kpi-card">' +
@@ -68,7 +68,7 @@ const APP5T_Charts = (function () {
         );
     }
 
-    // ── Render KPIs by role ────────────────────────────────────────────────
+    // -- Render KPIs by role ------------------------------------------------
     function _renderKPIs(stats, role) {
         const container = document.getElementById('kpi-grid');
         if (!container) return;
@@ -76,7 +76,7 @@ const APP5T_Charts = (function () {
         let html = '';
 
         if (role === 'vendedor') {
-            // Leads Activos – count clientes assigned (approximate from propiedades)
+            // Leads Activos  count clientes assigned (approximate from propiedades)
             const leadsCount = stats.pendientes + stats.reservadas;
             html += _kpiCard(KPI_ICONS.leads, 'Leads Activos', leadsCount);
 
@@ -86,14 +86,14 @@ const APP5T_Charts = (function () {
             // Reservas Aprobadas
             html += _kpiCard(KPI_ICONS.reservasAprobadas, 'Reservas Aprobadas', stats.reservadas);
 
-            // Comisión Estimada (3% of reservadas value)
+            // Comisin Estimada (3% of reservadas value)
             const reservadasProps = APP5T_DB.query('propiedades', function (p) {
                 return p.estado === 'Reservada';
             });
             let sumReservadas = 0;
             reservadasProps.forEach(function (p) { sumReservadas += (p.valor_final || 0); });
             const comision = sumReservadas * 0.03;
-            html += _kpiCard(KPI_ICONS.comision, 'Comisión Estimada', APP5T_Utils.formatMoneda(comision));
+            html += _kpiCard(KPI_ICONS.comision, 'Comisin Estimada', APP5T_Utils.formatMoneda(comision));
 
         } else if (role === 'gerente') {
             html = `
@@ -124,7 +124,7 @@ const APP5T_Charts = (function () {
             return; // exit early for gerente
 
         } else if (role === 'administrador') {
-            // Métricas comerciales completas para Administración
+            // Mtricas comerciales completas para Administracin
             const cuotasPend = stats.cuotasPendientes || 18;
             const montoPend = (stats.montoPendienteCuotas > 0) ? stats.montoPendienteCuotas : 86400000;
             const montoRec = (stats.montoRecaudadoCuotas > 0) ? stats.montoRecaudadoCuotas : 142500000;
@@ -139,7 +139,7 @@ const APP5T_Charts = (function () {
         container.innerHTML = html;
     }
 
-    // ── Chart.js centre-text plugin (doughnut) ─────────────────────────────
+    // -- Chart.js centre-text plugin (doughnut) -----------------------------
     const centerTextPlugin = {
         id: 'centerText',
         afterDraw: function (chart) {
@@ -164,7 +164,7 @@ const APP5T_Charts = (function () {
         }
     };
 
-    // ── Render Composition Doughnut ────────────────────────────────────────
+    // -- Render Composition Doughnut ----------------------------------------
     function _renderCompositionChart(stats, projectId = 'all') {
         const canvas = document.getElementById('chart-composition');
         if (!canvas) return;
@@ -275,7 +275,7 @@ const APP5T_Charts = (function () {
         });
     }
 
-    // ── Render Projects Stacked Bar ────────────────────────────────────────
+    // -- Render Projects Stacked Bar ----------------------------------------
     function _renderProjectsChart(stats) {
         const canvas = document.getElementById('chart-projects');
         if (!canvas) return;
@@ -374,13 +374,13 @@ const APP5T_Charts = (function () {
         });
     }
 
-    // ── Render Monthly Sales by Project (real data) ────────────────────────
+    // -- Render Monthly Sales by Project (real data) ------------------------
     function _renderVelocityChart(stats) {
         const canvas = document.getElementById('chart-velocity');
         if (!canvas) return;
         if (velocityChart) { velocityChart.destroy(); velocityChart = null; }
 
-        // ── Build last 12 months labels ──
+        // -- Build last 12 months labels --
         const now = new Date();
         const months = [];
         const monthKeys = []; // 'YYYY-MM'
@@ -390,13 +390,13 @@ const APP5T_Charts = (function () {
             monthKeys.push(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`);
         }
 
-        // ── Get real data ──
+        // -- Get real data --
         const proyectos  = APP5T_DB.getAll('proyectos')  || [];
         const etapas     = APP5T_DB.getAll('etapas')     || [];
         const propiedades= APP5T_DB.getAll('propiedades')|| [];
         const negociaciones = APP5T_DB.getAll('negociaciones') || [];
 
-        // Build prop → proyecto map
+        // Build prop ? proyecto map
         const propToProyecto = {};
         propiedades.forEach(p => {
             let idProy = p.id_proyecto;
@@ -431,7 +431,7 @@ const APP5T_Charts = (function () {
             countsByProyecto[idProy][mk] = (countsByProyecto[idProy][mk] || 0) + 1;
         });
 
-        // ── Palette: one vibrant color per project ──
+        // -- Palette: one vibrant color per project --
         const PALETTE = [
             { border: '#6366f1', bg: 'rgba(99,102,241,0.15)' },
             { border: '#f59e0b', bg: 'rgba(245,158,11,0.15)' },
@@ -507,7 +507,7 @@ const APP5T_Charts = (function () {
                         padding: 12,
                         callbacks: {
                             label: function(ctx) {
-                                return ` ${ctx.dataset.label}: ${ctx.parsed.y} negociación${ctx.parsed.y !== 1 ? 'es' : ''}`;
+                                return ` ${ctx.dataset.label}: ${ctx.parsed.y} negociacin${ctx.parsed.y !== 1 ? 'es' : ''}`;
                             }
                         }
                     }
@@ -515,11 +515,11 @@ const APP5T_Charts = (function () {
             }
         });
 
-        // ── Render rentability panel (injected below chart-card) ──
+        // -- Render rentability panel (injected below chart-card) --
         _renderRentabilityPanel(proyectos, etapas, propiedades, negociaciones, propToProyecto, PALETTE);
     }
 
-    // ── Rentability Panel: table below velocity chart ──────────────────────
+    // -- Rentability Panel: table below velocity chart ----------------------
     function _renderRentabilityPanel(proyectos, etapas, propiedades, negociaciones, propToProyecto, PALETTE) {
         const containerId = 'chart-rentability-panel';
         let panel = document.getElementById(containerId);
@@ -556,11 +556,11 @@ const APP5T_Charts = (function () {
                 ingresos += Number(neg.valor_final || 0);
             });
 
-            // Acción recomendada
+            // Accin recomendada
             let accion = '', accionColor = '';
-            if (pct >= 80)       { accion = '✅ En meta';        accionColor = '#10b981'; }
-            else if (pct >= 50)  { accion = '⚡ Impulsar ventas'; accionColor = '#f59e0b'; }
-            else                 { accion = '🚨 Acción urgente';  accionColor = '#f43f5e'; }
+            if (pct >= 80)       { accion = '? En meta';        accionColor = '#10b981'; }
+            else if (pct >= 50)  { accion = '? Impulsar ventas'; accionColor = '#f59e0b'; }
+            else                 { accion = '?? Accin urgente';  accionColor = '#f43f5e'; }
 
             // Progress bar
             const barVendida  = total > 0 ? (vendidas   / total * 100).toFixed(1) : 0;
@@ -573,7 +573,7 @@ const APP5T_Charts = (function () {
               <td style="padding:10px 12px;min-width:130px;">
                 <div style="display:flex;align-items:center;gap:8px;">
                   <span style="width:10px;height:10px;border-radius:50%;background:${col.border};flex-shrink:0;"></span>
-                  <strong style="font-size:0.82rem;color:#1e293b;">${pr.nombre_proyecto || pr.nombre || '—'}</strong>
+                  <strong style="font-size:0.82rem;color:#1e293b;">${pr.nombre_proyecto || pr.nombre || ''}</strong>
                 </div>
               </td>
               <td style="padding:10px 8px;text-align:center;font-size:0.82rem;color:#334155;">${total}</td>
@@ -605,7 +605,7 @@ const APP5T_Charts = (function () {
                 <th style="padding:9px 12px;text-align:left;font-size:0.72rem;text-transform:uppercase;letter-spacing:.05em;color:#64748b;">Proyecto</th>
                 <th style="padding:9px 8px;text-align:center;font-size:0.72rem;text-transform:uppercase;letter-spacing:.05em;color:#64748b;">Lotes</th>
                 <th style="padding:9px 8px;text-align:left;font-size:0.72rem;text-transform:uppercase;letter-spacing:.05em;color:#64748b;">Progreso</th>
-                <th style="padding:9px 8px;text-align:center;font-size:0.72rem;text-transform:uppercase;letter-spacing:.05em;color:#64748b;">Ocupación</th>
+                <th style="padding:9px 8px;text-align:center;font-size:0.72rem;text-transform:uppercase;letter-spacing:.05em;color:#64748b;">Ocupacin</th>
                 <th style="padding:9px 8px;text-align:right;font-size:0.72rem;text-transform:uppercase;letter-spacing:.05em;color:#64748b;">Ingresos activos</th>
                 <th style="padding:9px 8px;text-align:center;font-size:0.72rem;text-transform:uppercase;letter-spacing:.05em;color:#64748b;">Estado</th>
               </tr>
@@ -615,7 +615,7 @@ const APP5T_Charts = (function () {
     }
 
 
-    // ── Render Goals Doughnut (Gauge) ──────────────────────────────────────
+    // -- Render Goals Doughnut (Gauge) --------------------------------------
     function _renderGoalsChart(stats) {
         const canvas = document.getElementById('chart-goals');
         if (!canvas) return;
@@ -673,7 +673,7 @@ const APP5T_Charts = (function () {
         });
     }
 
-    // ── Nuevos Gráficos por Rol ─────────────────────────────────────────────
+    // -- Nuevos Grficos por Rol ---------------------------------------------
 
     // -- Gerente --
     function _renderLeaderboardChart(stats) {
@@ -835,7 +835,7 @@ const APP5T_Charts = (function () {
         morosidadChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ['Al Día', 'Con Deuda'],
+                labels: ['Al Da', 'Con Deuda'],
                 datasets: [{ 
                     data: [alDia, vencidas], 
                     backgroundColor: ['#00E676', '#FF1744'], 
@@ -904,9 +904,9 @@ const APP5T_Charts = (function () {
         embudoLegalChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Redacción', 'Notaría', 'CBR', 'Entregado'],
+                labels: ['Redaccin', 'Notara', 'CBR', 'Entregado'],
                 datasets: [{
-                    label: 'Trámites',
+                    label: 'Trmites',
                     data: [redaccion, notaria, cbr, entregado],
                     backgroundColor: '#8e44ad', borderRadius: 4
                 }]
@@ -972,7 +972,7 @@ const APP5T_Charts = (function () {
         const monthNames = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
         const year = typeof selectedYearCobranza !== 'undefined' ? selectedYearCobranza : new Date().getFullYear();
         
-        // 12 meses: Año calendario seleccionado
+        // 12 meses: Ao calendario seleccionado
         for (let i = 0; i < 12; i++) {
             const mm = String(i + 1).padStart(2, '0');
             const key = year + '-' + mm;
@@ -1058,7 +1058,7 @@ const APP5T_Charts = (function () {
         const porVencer = negs.filter(n => String(n.estado_avance||'').toLowerCase() === 'reserva_enviada' || String(n.estado_avance||'').toLowerCase() === 'reserva_aprobada').slice(0,4);
         
         if (porVencer.length === 0) {
-            html = '<div style="color:#64748b;padding:10px;">No hay reservas próximas a vencer.</div>';
+            html = '<div style="color:#64748b;padding:10px;">No hay reservas prximas a vencer.</div>';
         } else {
             porVencer.forEach(n => {
                 const prop = props.find(p => p.id === n.id_propiedad);
@@ -1066,14 +1066,14 @@ const APP5T_Charts = (function () {
                 html += `
                 <div style="background:rgba(231,76,60,0.1); border-left:4px solid #e74c3c; padding:10px; margin-bottom:8px; border-radius:4px;">
                     <strong style="color:#c0392b;">${propName}</strong> - Cliente: ${n.id_cliente} <br>
-                    <small style="color:#e74c3c;">Revisar plazo de reserva (ID Negociación: ${n.id})</small>
+                    <small style="color:#e74c3c;">Revisar plazo de reserva (ID Negociacin: ${n.id})</small>
                 </div>`;
             });
         }
         panel.innerHTML = html;
     }
 
-    // -- Alertas Admin (Próximos Vencimientos a 30 días) --
+    // -- Alertas Admin (Prximos Vencimientos a 30 das) --
     function _renderAlertasAdmin() {
         const panel = document.getElementById('chart-alertas-admin-panel');
         if (!panel) return;
@@ -1090,7 +1090,7 @@ const APP5T_Charts = (function () {
             if (!c.fecha_vencimiento) return false;
             const fVenc = APP5T_Utils.parseFecha(c.fecha_vencimiento);
             if (!fVenc || isNaN(fVenc.getTime())) return false;
-            // Que venza pronto (entre hoy-algo y 30 días) o ya esté vencida
+            // Que venza pronto (entre hoy-algo y 30 das) o ya est vencida
             return fVenc <= en30Dias;
         });
         
@@ -1102,7 +1102,7 @@ const APP5T_Charts = (function () {
         
         let html = '';
         if (proximas.length === 0) {
-            html = '<div style="color:#64748b;padding:10px;">No hay cuotas por vencer en los próximos 30 días.</div>';
+            html = '<div style="color:#64748b;padding:10px;">No hay cuotas por vencer en los prximos 30 das.</div>';
         } else {
             proximas.forEach(c => {
                 const clienteObj = clientes.find(cl => String(cl.id) === String(c.id_cliente));
@@ -1115,7 +1115,7 @@ const APP5T_Charts = (function () {
                 html += `
                 <div style="background:${bgColor}; border-left:4px solid ${colorBorder}; padding:10px; margin-bottom:8px; border-radius:4px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <strong style="color:${colorBorder};">Cuota ${c.cuota_nro || '-'} • ${APP5T_Utils.formatMoneda(c.valor_cuota || 0)}</strong>
+                        <strong style="color:${colorBorder};">Cuota ${c.cuota_nro || '-'}  ${APP5T_Utils.formatMoneda(c.valor_cuota || 0)}</strong>
                         <span style="font-size:0.8rem; font-weight:600; color:${colorBorder};">${isVencida ? 'VENCIDA' : 'Pronto a vencer'}</span>
                     </div>
                     <div style="font-size:0.9rem; margin-top:4px; color:var(--text-light);">
@@ -1129,7 +1129,7 @@ const APP5T_Charts = (function () {
     }
 
 
-    // ── Helper: Render offline warning when Chart.js is missing ────────────
+    // -- Helper: Render offline warning when Chart.js is missing ------------
     function _renderOfflineWarning() {
         const ids = ['chart-composition', 'chart-projects', 'chart-velocity', 'chart-leaderboard', 'chart-cashflow', 'chart-funnel-general', 'chart-morosidad', 'chart-embudo-legal', 'chart-cobranza-mes', 'chart-funnel-personal'];
         ids.forEach(id => {
@@ -1143,7 +1143,7 @@ const APP5T_Charts = (function () {
                         warn = document.createElement('div');
                         warn.className = 'chart-offline-warning';
                         warn.style.cssText = 'color:var(--text-dim);display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;min-height:150px;font-size:13px;gap:8px;padding:20px;text-align:center;';
-                        warn.innerHTML = '<i class="fa-solid fa-cloud-slash" style="font-size:24px;color:var(--primary);opacity:0.7;"></i><span>Gráficos no disponibles</span>';
+                        warn.innerHTML = '<i class="fa-solid fa-cloud-slash" style="font-size:24px;color:var(--primary);opacity:0.7;"></i><span>Grficos no disponibles</span>';
                         parent.appendChild(warn);
                     }
                 }
@@ -1387,7 +1387,7 @@ const APP5T_Charts = (function () {
         container.innerHTML = `
           <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:700; color:#6366f1; margin-bottom:5px; text-transform:uppercase;"><span>Promedio Global</span><span>6.8%</span></div>
           <div style="width:100%; height:8px; background:#e2e8f0; border-radius:4px; margin-bottom:10px;"><div style="width:6.8%; height:100%; background:#6366f1; border-radius:4px;"></div></div>
-          <div style="color:#64748b; font-size:11px; text-align:center;">% CONVERSIÓN DE MARKETING A CIERRE: 6.8%</div>
+          <div style="color:#64748b; font-size:11px; text-align:center;">% CONVERSIN DE MARKETING A CIERRE: 6.8%</div>
         `;
     }
 
@@ -1448,14 +1448,14 @@ const APP5T_Charts = (function () {
         yearsPopulated = true;
     }
 
-    // ── Public: renderDashboard ────────────────────────────────────────────
+    // -- Public: renderDashboard --------------------------------------------
     function renderDashboard(role) {
         destroy();
         const dbFilter = document.getElementById('dashboard-filter-proyecto');
         let idProyecto = 'all';
         
         if (dbFilter) {
-            // Llenar el filtro si está vacío
+            // Llenar el filtro si est vaco
             if (!dbFilter.dataset.populated) {
                 const proys = APP5T_DB.getAll('proyectos') || [];
                 let opts = '<option value="all">-- Todos los Proyectos --</option>';
@@ -1521,7 +1521,7 @@ const APP5T_Charts = (function () {
         }
     }
 
-    // ── Public: destroy ────────────────────────────────────────────────────
+    // -- Public: destroy ----------------------------------------------------
     function destroy() {
         if (compositionChart) { compositionChart.destroy(); compositionChart = null; }
         if (evolucionVentasChart) { evolucionVentasChart.destroy(); evolucionVentasChart = null; }
@@ -1541,14 +1541,14 @@ const APP5T_Charts = (function () {
         if (funnelPersonalChart) { funnelPersonalChart.destroy(); funnelPersonalChart = null; }
     }
 
-    // ── Export: PDF Report ──────────────────────────────────────────────────
+    // -- Export: PDF Report --------------------------------------------------
     function exportChartReport(chartId, title) {
         if (typeof html2pdf === 'undefined') {
-            alert("La librería de generación de PDF no está cargada.");
+            alert("La librera de generacin de PDF no est cargada.");
             return;
         }
 
-        // Bloquear actualizaciones de UI por sincronización automática durante la exportación
+        // Bloquear actualizaciones de UI por sincronizacin automtica durante la exportacin
         window.APP5T_PDF_EXPORTING = true;
 
         let chart = null;
@@ -1558,7 +1558,7 @@ const APP5T_Charts = (function () {
         if (!chart) {
             htmlElement = document.getElementById(chartId);
             if (!htmlElement) {
-                alert("No se encontró el gráfico o contenedor activo para exportar.");
+                alert("No se encontr el grfico o contenedor activo para exportar.");
                 window.APP5T_PDF_EXPORTING = false;
                 return;
             }
@@ -1572,8 +1572,8 @@ const APP5T_Charts = (function () {
 
         try {
             if (chart) {
-                // Caso 1: Exportar un solo gráfico
-                // Para un solo gráfico, lo exportamos creando un contenedor offscreen con la imagen
+                // Caso 1: Exportar un solo grfico
+                // Para un solo grfico, lo exportamos creando un contenedor offscreen con la imagen
                 const container = document.createElement('div');
                 container.style.position = 'absolute';
                 container.style.left = '0';
@@ -1595,7 +1595,7 @@ const APP5T_Charts = (function () {
                 header.style.alignItems = 'flex-end';
                 header.innerHTML = `
                     <div>
-                        <h2 style="margin: 0; color: #0f172a; font-size: 24px; font-family: sans-serif;">5 Tierras - Reporte de Gestión</h2>
+                        <h2 style="margin: 0; color: #0f172a; font-size: 24px; font-family: sans-serif;">5 Tierras - Reporte de Gestin</h2>
                         <h3 style="margin: 5px 0 0 0; color: #3b82f6; font-size: 18px; text-transform: uppercase; font-family: sans-serif;">${title}</h3>
                     </div>
                     <div style="text-align: right; font-size: 12px; color: #64748b; font-family: sans-serif;">
@@ -1617,7 +1617,7 @@ const APP5T_Charts = (function () {
                 const datasets = chart.data.datasets || [];
 
                 tableHtml += '<tr style="background:#f1f5f9; border-bottom: 2px solid #cbd5e1;">';
-                tableHtml += '<th style="padding: 8px; text-align: left;">Categoría</th>';
+                tableHtml += '<th style="padding: 8px; text-align: left;">Categora</th>';
                 datasets.forEach(ds => {
                     tableHtml += `<th style="padding: 8px; text-align: right;">${ds.label || 'Valor'}</th>`;
                 });
@@ -1660,8 +1660,8 @@ const APP5T_Charts = (function () {
                         if (container.parentNode) container.parentNode.removeChild(container);
                         window.APP5T_PDF_EXPORTING = false;
                     }).catch(err => {
-                        console.error("Error generando PDF del gráfico:", err);
-                        alert("Error generando PDF del gráfico: " + err.message);
+                        console.error("Error generando PDF del grfico:", err);
+                        alert("Error generando PDF del grfico: " + err.message);
                         if (container.parentNode) container.parentNode.removeChild(container);
                         window.APP5T_PDF_EXPORTING = false;
                     });
@@ -1674,12 +1674,12 @@ const APP5T_Charts = (function () {
                     img.onerror = runExport;
                 }
             } else {
-                // Caso 2: Dashboard completo — generado con jsPDF puro (sin html2canvas)
+                // Caso 2: Dashboard completo  generado con jsPDF puro (sin html2canvas)
 
-                // ── Detectar rol activo (via body classList, más confiable) ────────
+                // -- Detectar rol activo (via body classList, ms confiable) --------
                 const isAdministrador = document.body.classList.contains('role-administrador');
 
-                // ── Collect KPI data from the live DOM ──────────────────────────────
+                // -- Collect KPI data from the live DOM ------------------------------
                 const kpiData = [];
                 if (isAdministrador) {
                     // Administrador: KPIs con clase .kpi-card / .kpi-label / .kpi-value
@@ -1708,15 +1708,15 @@ const APP5T_Charts = (function () {
                     });
                 }
 
-                // ── Collect chart images preserving aspect ratio ───────────────────
+                // -- Collect chart images preserving aspect ratio -------------------
                 const chartInfo = isAdministrador
                     ? [
-                        { id: 'chart-composition',  label: 'Composición del Inventario' },
+                        { id: 'chart-composition',  label: 'Composicin del Inventario' },
                         { id: 'chart-cobranza-mes', label: 'Cobranza del Mes' },
                     ]
                     : [
                         { id: 'chart-embudo-ventas',          label: 'Embudo de Ventas' },
-                        { id: 'chart-evolucion-ventas',       label: 'Evolución de Ventas' },
+                        { id: 'chart-evolucion-ventas',       label: 'Evolucin de Ventas' },
                         { id: 'chart-morosidad-gerencia',     label: 'Morosidad' },
                         { id: 'chart-cobranza-mes-gerencia',  label: 'Cobranza Mensual' },
                         { id: 'chart-cashflow-gerencia',      label: 'Flujo de Caja Estimado' },
@@ -1748,12 +1748,12 @@ const APP5T_Charts = (function () {
 
                 window.APP5T_PDF_EXPORTING = false;
 
-                // ── Build PDF with jsPDF ─────────────────────────────────────────────
+                // -- Build PDF with jsPDF ---------------------------------------------
                 let JsPDF = null;
                 if (window.jspdf && window.jspdf.jsPDF)  JsPDF = window.jspdf.jsPDF;
                 else if (window.jsPDF)                    JsPDF = window.jsPDF;
                 if (!JsPDF) {
-                    alert('jsPDF no disponible. Recarga la página e intenta nuevamente.');
+                    alert('jsPDF no disponible. Recarga la pgina e intenta nuevamente.');
                     return;
                 }
 
@@ -1787,7 +1787,7 @@ const APP5T_Charts = (function () {
                 const hc = hexRgb('#0f172a');
                 doc.setFillColor(hc.r, hc.g, hc.b);
                 doc.rect(mg, y, cw, 12, 'F');
-                txt('5 Tierras  |  Reporte de Gestión', mg + 4, y + 7.8, { bold: true, size: 11, color: '#ffffff' });
+                txt('5 Tierras  |  Reporte de Gestin', mg + 4, y + 7.8, { bold: true, size: 11, color: '#ffffff' });
                 txt(title, mg + cw / 2, y + 7.8, { bold: true, size: 10, color: '#3b82f6', align: 'center' });
                 txt('Generado: ' + dateStr, mg + cw - 2, y + 4.5, { size: 7, color: '#94a3b8', align: 'right' });
                 txt(userName + ' (' + userRole + ')', mg + cw - 2, y + 9, { size: 7, color: '#94a3b8', align: 'right' });
@@ -1813,7 +1813,7 @@ const APP5T_Charts = (function () {
 
                 // Charts
                 if (chartImgs.length === 0) {
-                    txt('(Sin gráficos disponibles para exportar)', PW / 2, y + 10, { size: 9, color: '#94a3b8', align: 'center' });
+                    txt('(Sin grficos disponibles para exportar)', PW / 2, y + 10, { size: 9, color: '#94a3b8', align: 'center' });
                 } else {
                     const cols = 2;
                     const colW = (cw - 8) / cols;
@@ -1853,15 +1853,15 @@ const APP5T_Charts = (function () {
                 doc.save(pdfFilename);
             }
         } catch (globalError) {
-            console.error("Error crítico en exportChartReport:", globalError);
-            alert("Error crítico en la generación del reporte PDF: " + globalError.message);
+            console.error("Error crtico en exportChartReport:", globalError);
+            alert("Error crtico en la generacin del reporte PDF: " + globalError.message);
             window.APP5T_PDF_EXPORTING = false;
         }
     }
 
     function exportDashboardExcel() {
         if (typeof XLSX === 'undefined') {
-            alert("La librería Excel (SheetJS) no está cargada.");
+            alert("La librera Excel (SheetJS) no est cargada.");
             return;
         }
         
@@ -1876,7 +1876,7 @@ const APP5T_Charts = (function () {
         
         // 1. Resumen General
         const resumenData = [
-            ["Métrica", "Valor"],
+            ["Mtrica", "Valor"],
             ["Proyecto", nombreProyecto],
             ["Fecha Reporte", new Date().toLocaleString('es-CL')],
             ["", ""],
@@ -1888,26 +1888,26 @@ const APP5T_Charts = (function () {
             ["", ""],
             ["Ventas Totales (CLP)", (stats.ingresoRecaudado || 0) + (stats.ingresoComprometido || 0)],
             ["Ingresos Proyectados (CLP)", stats.ingresoProyectado ?? 0],
-            ["Comisión Estimada (CLP)", ((stats.ingresoRecaudado || 0) + (stats.ingresoComprometido || 0)) * 0.03]
+            ["Comisin Estimada (CLP)", ((stats.ingresoRecaudado || 0) + (stats.ingresoComprometido || 0)) * 0.03]
         ];
         const ws1 = XLSX.utils.aoa_to_sheet(resumenData);
         XLSX.utils.book_append_sheet(wb, ws1, "Resumen General");
 
-        // -- EXTRACCIÓN DE DATOS PARA HOJAS DETALLADAS --
+        // -- EXTRACCIN DE DATOS PARA HOJAS DETALLADAS --
         const allProyectos = APP5T_DB.getAll('proyectos') || [];
         const allPropiedades = APP5T_DB.getAll('propiedades') || [];
         const allClientes = APP5T_DB.getAll('clientes') || [];
         const allNegociaciones = APP5T_DB.getAll('negociaciones') || [];
         const allCuotas = APP5T_DB.getAll('cuenta_corriente') || [];
 
-        // Diccionarios para cruces rápidos
+        // Diccionarios para cruces rpidos
         const mapProyecto = {}; allProyectos.forEach(p => mapProyecto[p.id] = p.nombre_proyecto || p.nombre);
         const mapPropiedad = {}; allPropiedades.forEach(p => mapPropiedad[p.id] = p);
         const mapClienteById = {}; allClientes.forEach(c => mapClienteById[c.id || c.rut] = c);
 
-        // 2. Sábana de Ventas
+        // 2. Sbana de Ventas
         const ventasData = [
-            ["Proyecto", "Parcela", "Cliente RUT", "Cliente Nombre", "Estado Comercial", "Fecha Negociación", "Valor Venta (CLP)", "Pie (CLP)", "Saldo a Financiar (CLP)", "N° Cuotas"]
+            ["Proyecto", "Parcela", "Cliente RUT", "Cliente Nombre", "Estado Comercial", "Fecha Negociacin", "Valor Venta (CLP)", "Pie (CLP)", "Saldo a Financiar (CLP)", "N Cuotas"]
         ];
         
         allNegociaciones.forEach(neg => {
@@ -1933,16 +1933,16 @@ const APP5T_Charts = (function () {
             ]);
         });
         const ws2 = XLSX.utils.aoa_to_sheet(ventasData);
-        if (ws2['!ref']) ws2['!autofilter'] = { ref: ws2['!ref'] }; // Filtros dinámicos
-        XLSX.utils.book_append_sheet(wb, ws2, "Sábana de Ventas");
+        if (ws2['!ref']) ws2['!autofilter'] = { ref: ws2['!ref'] }; // Filtros dinmicos
+        XLSX.utils.book_append_sheet(wb, ws2, "Sbana de Ventas");
 
         // 3. Detalle Cuenta Corriente & 4. Cartera en Mora Detallada
         const ccData = [
-            ["Proyecto", "Parcela", "Cliente RUT", "Cliente Nombre", "N° Cuota", "Monto Cuota (CLP)", "Fecha Vencimiento", "Estado", "Monto Pagado", "Fecha Pago"]
+            ["Proyecto", "Parcela", "Cliente RUT", "Cliente Nombre", "N Cuota", "Monto Cuota (CLP)", "Fecha Vencimiento", "Estado", "Monto Pagado", "Fecha Pago"]
         ];
         
         const moraData = [
-            ["Proyecto", "Parcela", "Cliente RUT", "Cliente Nombre", "N° Cuota", "Fecha Vencimiento", "Monto Adeudado (CLP)", "Días de Atraso", "Tramo Mora"]
+            ["Proyecto", "Parcela", "Cliente RUT", "Cliente Nombre", "N Cuota", "Fecha Vencimiento", "Monto Adeudado (CLP)", "Das de Atraso", "Tramo Mora"]
         ];
 
         const hoy = new Date();
@@ -1981,10 +1981,10 @@ const APP5T_Charts = (function () {
                     
                     if (diffDays > 0) {
                         const deuda = monto - pagado;
-                        let tramo = "1-30 días";
-                        if (diffDays > 90) tramo = "90+ días";
-                        else if (diffDays > 60) tramo = "61-90 días";
-                        else if (diffDays > 30) tramo = "31-60 días";
+                        let tramo = "1-30 das";
+                        if (diffDays > 90) tramo = "90+ das";
+                        else if (diffDays > 60) tramo = "61-90 das";
+                        else if (diffDays > 30) tramo = "31-60 das";
                         
                         moraData.push([
                             nomProy, nomProp, rutCli, nombreCli.trim(), 
@@ -1996,11 +1996,11 @@ const APP5T_Charts = (function () {
         });
         
         const ws3 = XLSX.utils.aoa_to_sheet(ccData);
-        if (ws3['!ref']) ws3['!autofilter'] = { ref: ws3['!ref'] }; // Filtros dinámicos
+        if (ws3['!ref']) ws3['!autofilter'] = { ref: ws3['!ref'] }; // Filtros dinmicos
         XLSX.utils.book_append_sheet(wb, ws3, "Detalle Cta. Corriente");
         
         const ws4 = XLSX.utils.aoa_to_sheet(moraData);
-        if (ws4['!ref']) ws4['!autofilter'] = { ref: ws4['!ref'] }; // Filtros dinámicos
+        if (ws4['!ref']) ws4['!autofilter'] = { ref: ws4['!ref'] }; // Filtros dinmicos
         XLSX.utils.book_append_sheet(wb, ws4, "Cartera en Mora");
 
         // Guardar Archivo
@@ -2009,7 +2009,7 @@ const APP5T_Charts = (function () {
         XLSX.writeFile(wb, filename);
     }
 
-    // ── Public API ─────────────────────────────────────────────────────────
+    // -- Public API ---------------------------------------------------------
     return {
         renderDashboard: renderDashboard,
         destroy:         destroy,

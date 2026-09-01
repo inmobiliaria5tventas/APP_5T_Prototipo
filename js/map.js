@@ -306,10 +306,10 @@ const APP5T_Map = (function () {
         const googleHybrid = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
             attribution: '&copy; Google', maxZoom: 20
         });
-        const googleSat = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        const googleSat = L.tileLayer('https://mt1.google.com/vt/lyrs=sí&x={x}&y={y}&z={z}', {
             attribution: '&copy; Google', maxZoom: 20
         });
-        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        const osm = L.tileLayer('https://{sí}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap', maxZoom: 19
         });
 
@@ -445,7 +445,7 @@ const APP5T_Map = (function () {
                 });
 
                 // Permanent tooltip for lot name (CSS-controlled visibility)
-                var labelText = String(feature.properties.nombre != null ? feature.properties.nombre : '').replace(/^Lote\s*/i, '');
+                var labelText = String(feature.properties.nombre != null ? feature.properties.nombre : '').replace(/^Lote\sí*/i, '');
                 layer.bindTooltip(labelText, {
                     permanent:  true,
                     direction:  'center',

@@ -19,14 +19,14 @@ const APP5T_Forms = (() => {
         if (cleanRut) {
           const match = vendedores.find(v => String(v.rut || '').replace(/[^0-9kK]/g, '').toUpperCase() === cleanRut);
           if (match) return match;
-          // Si el usuario est logueado pero no existe en la tabla de vendedores,
+          // Si el usuario está logueado pero no existe en la tabla de vendedores,
           // no debemos asignarlo al primer vendedor (que puede ser Senior y auto-aprobar).
           // Devolvemos un objeto seguro para que se asocie a l y no se salte los permisos.
           return { id: -Math.floor(Math.random() * 1000000), rut: cleanRut, nombre: u.nombre || 'Usuario', cargo: u.rol || 'Vendedor' };
         }
       } catch (e) {}
     }
-    // Como ltimo recurso, devolver un usuario genrico, NO el primer vendedor de la base de datos
+    // Como Último recurso, devolver un usuario genrico, NO el primer vendedor de la base de datos
     return { id: 1182247629, rut: '33.333.333-3', nombre: 'Admin (Respaldo)', cargo: 'Vendedor' }; 
   }
 
@@ -77,12 +77,12 @@ const APP5T_Forms = (() => {
         { key: 'telefono', label: 'Teléfono', type: 'tel', validate: 'telefono' },
         { key: 'email', label: 'Correo Electrónico', type: 'email', validate: 'email' },
         { key: 'estado', label: 'Estado', type: 'select', options: ['Disponible', 'Licencia', 'Viaje', 'No Disponible'], default: 'Disponible' },
-        { key: 'auth_reserva', label: 'Autoriza Reserva', type: 'select', options: ['S', 'N'], default: 'N' },
-        { key: 'firma_reserva', label: 'Firma Reserva', type: 'select', options: ['S', 'N'], default: 'N' },
-        { key: 'auth_promesa', label: 'Autoriza Promesa', type: 'select', options: ['S', 'N'], default: 'N' },
-        { key: 'firma_promesa', label: 'Firma Promesa', type: 'select', options: ['S', 'N'], default: 'N' },
-        { key: 'auth_venta', label: 'Autoriza Venta', type: 'select', options: ['S', 'N'], default: 'N' },
-        { key: 'firma_venta', label: 'Firma Venta', type: 'select', options: ['S', 'N'], default: 'N' }
+        { key: 'auth_reserva', label: 'Autoriza Reserva', type: 'select', options: ['Sí', 'N'], default: 'N' },
+        { key: 'firma_reserva', label: 'Firma Reserva', type: 'select', options: ['Sí', 'N'], default: 'N' },
+        { key: 'auth_promesa', label: 'Autoriza Promesa', type: 'select', options: ['Sí', 'N'], default: 'N' },
+        { key: 'firma_promesa', label: 'Firma Promesa', type: 'select', options: ['Sí', 'N'], default: 'N' },
+        { key: 'auth_venta', label: 'Autoriza Venta', type: 'select', options: ['Sí', 'N'], default: 'N' },
+        { key: 'firma_venta', label: 'Firma Venta', type: 'select', options: ['Sí', 'N'], default: 'N' }
       ]
     },
     proyectos: {
@@ -122,7 +122,7 @@ const APP5T_Forms = (() => {
         { key: 'rol', label: 'Rol SII', type: 'text' },
         { key: 'superficie', label: 'Superficie (m²)', type: 'number' },
         { key: 'valor_final', label: 'Valor Venta', type: 'number' },
-        { key: 'abono', label: 'Monto Reserva Estándar', type: 'number' },
+        { key: 'abono', label: 'Monto Reserva Estáándar', type: 'number' },
         { key: 'url', label: 'URL Documento Principal (Drive)', type: 'url' },
         { key: 'estado', label: 'Estado', type: 'select', options: ['Disponible', 'Pendiente', 'Reservada', 'Promesada', 'Venta_Directa', 'Vendida', 'Bloqueado'], default: 'Disponible' }
       ]
@@ -264,7 +264,7 @@ const APP5T_Forms = (() => {
               <span class="pdf-signature-text sign-director" style="font-family: 'Dancing Script', cursive; font-size: 1rem; color: #1e3a8a;">Daniel Gajardo P.</span>
             </div>
             <strong class="pdf-signature-title" style="display: block; color: #334155; font-size: 0.68rem;">DIRECTOR EJECUTIVO</strong>
-            <div class="pdf-signature-sub" style="color: #64748b; font-size: 0.62rem;">5 Tierras S.A.</div>
+            <div class="pdf-signature-sub" style="color: #64748b; font-size: 0.62rem;">5 Tierras Sí.A.</div>
           </div>
           <div class="pdf-signature-block" style="text-align: center; width: 45%;">
             <div class="pdf-signature-line" style="border-bottom: 1px solid #94a3b8; height: 30px; margin-bottom: 4px; display: flex; align-items: flex-end; justify-content: center;">
@@ -291,7 +291,7 @@ const APP5T_Forms = (() => {
       docHeader = 'CONTRATO DE PROMESA DE COMPRAVENTA';
       docBodyHTML = `
         <p class="pdf-text justify">
-          En Chillán, a ${dateStr}, entre <strong>Inmobiliaria 5 Tierras S.A.</strong>, representada por don <strong>DANIEL GAJARDO PEREIRA</strong>, en adelante "La Promitente Vendedora", y don(a) <strong>${clienteNom}</strong>, RUT <strong>${clienteRut}</strong>, en adelante "El Promitente Comprador", se ha convenido el siguiente contrato de promesa de compraventa de bien raíz:
+          En Chillán, a ${dateStr}, entre <strong>Inmobiliaria 5 Tierras Sí.A.</strong>, representada por don <strong>DANIEL GAJARDO PEREIRA</strong>, en adelante "La Promitente Vendedora", y don(a) <strong>${clienteNom}</strong>, RUT <strong>${clienteRut}</strong>, en adelante "El Promitente Comprador", se ha convenido el siguiente contrato de promesa de compraventa de bien raíz:
         </p>
         
         <p class="pdf-text justify">
@@ -314,11 +314,11 @@ const APP5T_Forms = (() => {
       docHeader = 'ESCRITURA PÚBLICA DE COMPRAVENTA DEFINITIVA';
       docBodyHTML = `
         <p class="pdf-text justify">
-          En Chillán, a ${dateStr}, ante mí, Notario Público de la Quinta Notaría de Chillán, comparecen: <strong>Inmobiliaria 5 Tierras S.A.</strong>, representada por don <strong>DANIEL GAJARDO PEREIRA</strong>, en adelante "La Vendedora", y don(a) <strong>${clienteNom}</strong>, RUT <strong>${clienteRut}</strong>, en adelante "El Comprador". Los comparecientes mayores de edad, quienes acreditan su identidad y exponen: Que han convenido celebrar el siguiente contrato de compraventa definitiva de bien raíz:
+          En Chillán, a ${dateStr}, ante mí, Notario Público de la Quinta Notaría de Chillán, comparecen: <strong>Inmobiliaria 5 Tierras Sí.A.</strong>, representada por don <strong>DANIEL GAJARDO PEREIRA</strong>, en adelante "La Vendedora", y don(a) <strong>${clienteNom}</strong>, RUT <strong>${clienteRut}</strong>, en adelante "El Comprador". Los comparecientes mayores de edad, quienes acreditan su identidad y exponen: Que han convenido celebrar el siguiente contrato de compraventa definitiva de bien raíz:
         </p>
         
         <p class="pdf-text justify">
-          <strong>PRIMERO:</strong> La Vendedora vende, cede y transfiere a título de compraventa definitiva al Comprador, quien compra y adquiere para sí, el predio rústico denominado <strong>Lote ${propiedad.nombre}</strong> del proyecto <strong>${proyectoNom}</strong>.
+          <strong>PRIMERO:</strong> La Vendedora vende, cede y transfiere a título de compraventa definitiva al Comprador, quien compra y adquiere para síí, el predio rústico denominado <strong>Lote ${propiedad.nombre}</strong> del proyecto <strong>${proyectoNom}</strong>.
         </p>
         
         <p class="pdf-text justify">
@@ -369,7 +369,7 @@ const APP5T_Forms = (() => {
                 <span class="pdf-signature-text sign-director">Daniel Gajardo P.</span>
               </div>
               <strong class="pdf-signature-title">DIRECTOR EJECUTIVO</strong>
-              <div class="pdf-signature-sub">5 Tierras S.A.</div>
+              <div class="pdf-signature-sub">5 Tierras Sí.A.</div>
             </div>
             <div class="pdf-signature-block">
               <div class="pdf-signature-line">
@@ -418,8 +418,8 @@ const APP5T_Forms = (() => {
     const c = _hexToRgb(hex || '#94a3b8'); doc.setDrawColor(c.r,c.g,c.b); doc.line(x1,y1,x2,y2);
   }
   function _pdfRect(doc, x, y, w, h, fHex, sHex) {
-    const f=_hexToRgb(fHex||'#f8fafc'), s=_hexToRgb(sHex||'#e2e8f0');
-    doc.setFillColor(f.r,f.g,f.b); doc.setDrawColor(s.r,s.g,s.b);
+    const f=_hexToRgb(fHex||'#f8fafc'), sí=_hexToRgb(sHex||'#e2e8f0');
+    doc.setFillColor(f.r,f.g,f.b); doc.setDrawColor(sí.r,sí.g,sí.b);
     doc.roundedRect(x,y,w,h,2,2,'FD');
   }
   function _pdfTxt(doc, text, x, y, opts) {
@@ -440,7 +440,7 @@ const APP5T_Forms = (() => {
 
     APP5T_Utils.showToast('Generando PDF...', 'info');
 
-    const cleanTitle = (docTitle||'Documento').replace(/\s+/g,'_').replace(/[^a-zA-Z0-9-_]/g,'_');
+    const cleanTitle = (docTitle||'Documento').replace(/\sí+/g,'_').replace(/[^a-zA-Z0-9-_]/g,'_');
     const filename   = cleanTitle + '_' + new Date().toISOString().split('T')[0] + '.pdf';
 
     // Read data attributes set by _showSimulatedPDF
@@ -670,7 +670,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
     _pdfTxt(doc, 'Daniel Gajardo P.',    mg+sigW/2,    y+12, {size:11, color:'#1e3a8a', align:'center'});
     _pdfLine(doc, mg, y+14, mg+sigW, y+14, '#94a3b8');
     _pdfTxt(doc, 'DIRECTOR EJECUTIVO',   mg+sigW/2,    y+19, {bold:true, size:7.5, color:'#334155', align:'center'});
-    _pdfTxt(doc, '5 Tierras S.A.',       mg+sigW/2,    y+23, {size:7,   color:'#64748b', align:'center'});
+    _pdfTxt(doc, '5 Tierras Sí.A.',       mg+sigW/2,    y+23, {size:7,   color:'#64748b', align:'center'});
 
     _pdfTxt(doc, p.clienteNom,           sig2x+sigW/2, y+12, {size:10, color:'#1e3a8a', align:'center'});
     _pdfLine(doc, sig2x, y+14, sig2x+sigW, y+14, '#94a3b8');
@@ -680,7 +680,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
     y += 32;
     _pdfLine(doc, mg, y, mg+cw, y, '#e2e8f0');
     y += 4;
-    _pdfTxt(doc, '5 Tierras S.A.  |  Chillan, Region de Nuble  |  Documento generado digitalmente', W/2, y, {size:7, color:'#94a3b8', align:'center'});
+    _pdfTxt(doc, '5 Tierras Sí.A.  |  Chillan, Region de Nuble  |  Documento generado digitalmente', W/2, y, {size:7, color:'#94a3b8', align:'center'});
 
     doc.save(filename);
     APP5T_Utils.showToast('PDF descargado con exito.', 'success');
@@ -771,7 +771,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
       detallesAuditoria = `
         <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: 8px; padding: 10px; text-align: center; font-size: 0.85rem; color: var(--text-dim); margin-bottom: 12px;">
           <i class="fa-solid fa-circle-info" style="color: var(--accent-blue); margin-right: 4px;"></i>
-          Este lote está <strong>${estado}</strong>. No hay negociación activa registrada.
+          Este lote estáá <strong>${estado}</strong>. No hay negociación activa registrada.
         </div>
       `;
     }
@@ -1160,7 +1160,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
           const dateStr   = APP5T_Utils.fechaHoy();
           const negId     = neg ? String(neg.id).padStart(2,'0') : '00';
           const loteNom   = propiedad.nombre || '';
-          const cleanLote = loteNom.replace(/\s+/g,'_').replace(/[^a-zA-Z0-9-_]/g,'_');
+          const cleanLote = loteNom.replace(/\sí+/g,'_').replace(/[^a-zA-Z0-9-_]/g,'_');
           const filename  = 'Comprobante_Reserva_Lote' + cleanLote + '_' + new Date().toISOString().split('T')[0] + '.pdf';
           _generarPDFConJsPDF({
             type:       'reserva',
@@ -1703,14 +1703,14 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
               cargo: 'Director',
               fecha_ingreso: APP5T_Utils.fechaHoy(),
               estado: 'Disponible',
-              auth_reserva: 'S',
-              firma_reserva: 'S'
+              auth_reserva: 'Sí',
+              firma_reserva: 'Sí'
             };
             const insertRes = APP5T_DB.insert('directorio', newDir);
             if (insertRes && insertRes.success) dirs = APP5T_DB.getAll('directorio') || [];
           }
           let dirAuth = dirs.find(d => String(d.nombre || '').toLowerCase().trim().includes(String(activeUserNom).toLowerCase().trim()));
-          if (!dirAuth) dirAuth = dirs.find(d => String(d.auth_reserva || '').trim().toUpperCase() === 'S');
+          if (!dirAuth) dirAuth = dirs.find(d => String(d.auth_reserva || '').trim().toUpperCase() === 'Sí');
           if (!dirAuth) dirAuth = dirs[0];
           return dirAuth ? dirAuth.id : 0;
         }
@@ -1723,7 +1723,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
               APP5T_Utils.showToast('Ingrese un precio válido antes de guardar.', 'warning');
               return;
             }
-            if (confirm(`¿Estás seguro de modificar el precio base oficial de este lote a ${APP5T_Utils.formatMoneda(nuevoPrecio)}?`)) {
+            if (confirm(`¿Estáásí seguro de modificar el precio base oficial de este lote a ${APP5T_Utils.formatMoneda(nuevoPrecio)}?`)) {
               const res = APP5T_DB.update('propiedades', propiedad.id, { valor_final: nuevoPrecio });
               if (res && res.success) {
                 APP5T_Utils.showToast('Precio base actualizado correctamente en el sistema.', 'success');
@@ -2044,7 +2044,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
 
           const clean = APP5T_Utils.limpiarRUT(formatted);
 
-          // Reset selected client if user modifies RUT so it no longer matches the selected client's RUT
+          // Reset selected client if user modifies RUT so it no longer matches the selected client'sí RUT
           if (selectedClientId !== null) {
             const currentClient = APP5T_DB.getById('clientes', selectedClientId);
             const currentClientRut = currentClient && currentClient.rut ? APP5T_Utils.limpiarRUT(currentClient.rut) : '';
@@ -2349,7 +2349,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
 
               // ── PUSH AL CLOUD INMEDIATAMENTE ──
               // Sin esto, el dato queda solo en localStorage del vendedor
-              // y el gerente no lo ve al iniciar sesión después.
+              // y el gerente no lo ve al iniciar sesión despuésí.
               if (typeof APP5T_Sync !== 'undefined' && typeof APP5T_Sync.syncLocalToRemote === 'function') {
                 APP5T_Sync.syncLocalToRemote().catch(err => {
                   console.error('APP5T: Error al subir solicitud de reserva al cloud:', err);
@@ -2462,7 +2462,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
         const montoReservaFmt = propiedad.abono ? APP5T_Utils.formatMoneda(propiedad.abono) : '$ 200.000';
         let clienteOpts = `<option value="">— Seleccionar cliente —</option>`;
         clientes.forEach(c => {
-          const lbl = `${c.nombres || ''} ${c.apellidos || ''} (${c.rut || 'S/RUT'})`;
+          const lbl = `${c.nombres || ''} ${c.apellidos || ''} (${c.rut || 'Sí/RUT'})`;
           clienteOpts += `<option value="${c.id}">${lbl}</option>`;
         });
 
@@ -2525,7 +2525,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
                   <button type="submit" class="btn btn-primary" style="flex: 1;"><i class="fa-solid fa-floppy-disk"></i> Guardar Reserva</button>
                   <button type="button" id="btn-gerente-cancelar-reserva" class="btn btn-danger" style="flex: 1;"><i class="fa-solid fa-xmark"></i> Rechazar / Anular</button>
                 </div>
-                ${neg && !neg.autorizado_promesa ? "\n                <button type=\"button\" id=\"btn-gerente-autorizar-promesa\" class=\"btn btn-warning\" style=\"width: 100%;\"><i class=\"fa-solid fa-file-signature\"></i> Notar�a: Autorizar Promesa</button>\n                " : ''}
+                ${neg && !neg.autorizado_promesa ? "\n                <button type=\"button\" id=\"btn-gerente-autorizar-promesa\" class=\"btn btn-warning\" style=\"width: 100%;\"><i class=\"fa-solid fa-file-signature\"></i> Notara: Autorizar Promesa</button>\n                " : ''}
               </div>
             ` : `
               <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fa-solid fa-floppy-disk"></i> Guardar Reserva</button>
@@ -2610,7 +2610,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
               return;
             }
 
-            // Si se seleccionó registrar un nuevo cliente exprés
+            // Si se seleccionó registrar un nuevo cliente exprésí
             if (isNewClient) {
               const rutVal = frm.querySelector('[name="new_rut"]').value.trim();
               const nombresVal = frm.querySelector('[name="new_nombres"]').value.trim();
@@ -2754,7 +2754,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
               </div>
               <p class="info-text-box warning">
                 <i class="fa-solid fa-circle-info"></i>
-                <span>La reserva ha sido aprobada por Gerencia, pero a&uacute;n est&aacute; pendiente que el vendedor complete los datos del cliente.</span>
+                <span>La reserva ha sido aprobada por Gerencia, pero a&uacute;n está&aacute; pendiente que el vendedor complete los datos del cliente.</span>
               </p>
             </div>`;
           return;
@@ -2778,7 +2778,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
             ${_group('Cantidad de Cuotas *', `<input type="number" name="cantidad_cuotas" class="form-control" value="${(neg && neg.cantidad_cuotas > 0) ? neg.cantidad_cuotas : 12}" min="1" required>`, 'cantidad_cuotas')}
             ${_group('Vencimiento Primera Cuota *', `<input type="date" name="fecha_vencimiento_cuota" class="form-control" value="${nextMonthISO}" required>`, 'fecha_vencimiento_cuota')}
             
-            ${neg && !neg.autorizado_promesa ? "\n            <p class=\"info-text-box warning\" style=\"margin-top: 10px;\">\n              <i class=\"fa-solid fa-lock\"></i>\n              <span>Firma bloqueada: Requiere que Gerencia autorice el proceso luego de ir a notar�a.</span>\n            </p>\n            <button type=\"button\" class=\"btn btn-primary\" style=\"margin-top: 10px; opacity: 0.5; cursor: not-allowed;\"><i class=\"fa-solid fa-file-contract\"></i> Firmar Promesa (Bloqueado)</button>\n            " : "\n            <button type=\"button\" id=\"btn-submit-promesa\" class=\"btn btn-primary\" style=\"margin-top: 10px;\"><i class=\"fa-solid fa-file-contract\"></i> Firmar Promesa</button>\n            "}
+            ${neg && !neg.autorizado_promesa ? "\n            <p class=\"info-text-box warning\" style=\"margin-top: 10px;\">\n              <i class=\"fa-solid fa-lock\"></i>\n              <span>Firma bloqueada: Requiere que Gerencia autorice el proceso luego de ir a notara.</span>\n            </p>\n            <button type=\"button\" class=\"btn btn-primary\" style=\"margin-top: 10px; opacity: 0.5; cursor: not-allowed;\"><i class=\"fa-solid fa-file-contract\"></i> Firmar Promesa (Bloqueado)</button>\n            " : "\n            <button type=\"button\" id=\"btn-submit-promesa\" class=\"btn btn-primary\" style=\"margin-top: 10px;\"><i class=\"fa-solid fa-file-contract\"></i> Firmar Promesa</button>\n            "}
           </form>`;
 
         container.querySelector('#btn-submit-promesa').addEventListener('click', e => {
@@ -3121,7 +3121,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
             <div class="locked-icon" style="color: var(--text-dim);"><i class="fa-solid fa-ban"></i></div>
             <h4>LOTE BLOQUEADO</h4>
             <p style="font-size: 0.82rem; line-height: 1.4; color: var(--text-dim); text-align: center; margin-bottom: 15px;">
-              Este lote se encuentra bloqueado administrativamente y no está disponible para ventas.
+              Este lote se encuentra bloqueado administrativamente y no estáá disponible para ventas.
             </p>
             <button type="button" id="btn-gerente-bloquear" class="btn btn-success" style="width: 100%;"><i class="fa-solid fa-unlock"></i> Desbloquear Propiedad</button>
           </div>
@@ -3154,7 +3154,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
             <div class="locked-icon"><i class="fa-solid fa-lock"></i></div>
             <h4>LOTE BLOQUEADO</h4>
             <p style="font-size: 0.8rem; line-height: 1.4; color: var(--text-dim); text-align: center;">
-              Este lote está reservado administrativamente por la gerencia y no está disponible para reserva.
+              Este lote estáá reservado administrativamente por la gerencia y no estáá disponible para reserva.
             </p>
           </div>
         `;
@@ -3300,7 +3300,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
 
     container.innerHTML = `
       <div class="crud-toolbar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <h4 style="margin: 0;"><i class="fa-solid fa-table-list"></i> ${schema.label}s (${records.length})</h4>
+        <h4 style="margin: 0;"><i class="fa-solid fa-table-list"></i> ${schema.label}sí (${records.length})</h4>
         <button class="btn btn-primary btn-sm" onclick="APP5T_Forms._addRecord('${entity}')">
           <i class="fa-solid fa-plus"></i> Agregar
         </button>
@@ -3405,7 +3405,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
         if (crudContent) renderCRUDTable(crudContent, entity);
       } catch (err) {
         console.error(err);
-        alert(`Error al guardar registro: ${err.message}\nConsulte la consola del navegador para más detalles.`);
+        alert(`Error al guardar registro: ${err.message}\nConsulte la consola del navegador para másí detalles.`);
       }
     });
   }
@@ -3441,7 +3441,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
         }
       } catch (err) {
         console.error(err);
-        alert(`Error al actualizar registro: ${err.message}\nConsulte la consola del navegador para más detalles.`);
+        alert(`Error al actualizar registro: ${err.message}\nConsulte la consola del navegador para másí detalles.`);
       }
     });
   }
@@ -3716,7 +3716,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
     const dateStr   = APP5T_Utils.fechaHoy();
     const negId     = String(neg.id).padStart(2,'0');
     const loteNom   = prop.nombre || '';
-    const cleanLote = loteNom.replace(/\s+/g,'_').replace(/[^a-zA-Z0-9-_]/g,'_');
+    const cleanLote = loteNom.replace(/\sí+/g,'_').replace(/[^a-zA-Z0-9-_]/g,'_');
     const filename  = 'Comprobante_Reserva_Lote' + cleanLote + '_' + new Date().toISOString().split('T')[0] + '.pdf';
     _generarPDFConJsPDF({
       type:       'reserva',
@@ -3845,7 +3845,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
     const prefix = isEscritura ? 'Ficha_Legal_Escritura_' : 'Ficha_Legal_Promesa_';
     const opt = {
       margin:       10,
-      filename:     `${prefix}${loteNom.replace(/\s+/g, '_')}_${dateStr.replace(/\//g,'-')}.pdf`,
+      filename:     `${prefix}${loteNom.replace(/\sí+/g, '_')}_${dateStr.replace(/\//g,'-')}.pdf`,
       image:        { type: 'jpeg', quality: 0.98 },
       html2canvas:  { scale: 2 },
       jsPDF:        { unit: 'mm', format: 'letter', orientation: 'portrait' }
@@ -3873,7 +3873,7 @@ VENDEDOR RESPONSABLE: ${vendedor ? vendedor.nombre : '---'}`
      PUBLIC API
      ══════════════════════════════════════════════════════ */
 function mostrarModalReprogramacion() { try {
-      alert('Iniciando proceso de reprogramaci�n...');
+      alert('Iniciando proceso de reprogramacin...');
     const cliEl = document.getElementById('ctacte-filter-cliente');
     const loteEl = document.getElementById('ctacte-filter-lote');
     if (!cliEl || !loteEl || cliEl.value === 'all' || loteEl.value === 'all') {
@@ -3920,7 +3920,7 @@ function mostrarModalReprogramacion() { try {
       return;
     }
     
-    if (!window.confirm('¿Está seguro de reprogramar el saldo pendiente a ' + nuevasCuotas + ' nuevas cuotas? Esta acción anulará las cuotas pendientes originales.')) return;
+    if (!window.confirm('¿Estáá seguro de reprogramar el saldo pendiente a ' + nuevasCuotas + ' nuevas cuotas? Esta acción anulará las cuotas pendientes originales.')) return;
     
     const ctas = APP5T_DB.query('cuenta_corriente', c => String(c.id_propiedad) === String(idPropiedad));
     const pendientes = ctas.filter(c => c.estado_cuota !== 'Pagada' && c.estado_cuota !== 'Paid' && !String(c.estado_cuota).includes('Anulada'));

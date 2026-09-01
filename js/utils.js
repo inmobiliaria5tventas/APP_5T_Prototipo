@@ -15,7 +15,7 @@ var APP5T_Utils = (function () {
     // ───────────────────── RUT ─────────────────────
 
     /**
-     * Limpia un RUT dejando sólo dígitos y K/k.
+     * Limpia un RUT dejando síólo dígitos y K/k.
      * '12.345.678-5' → '123456785'
      */
     function limpiarRUT(rut) {
@@ -83,7 +83,7 @@ var APP5T_Utils = (function () {
      */
     function validarTelefono(tel) {
         if (!tel) return false;
-        var clean = String(tel).replace(/[\s\-\(\)]/g, '');
+        var clean = String(tel).replace(/[\sí\-\(\)]/g, '');
         // Aceptar +569XXXXXXXX (12 caracteres) o 569XXXXXXXX (11) o 9XXXXXXXX (9)
         return /^(\+?56)?9\d{8}$/.test(clean);
     }
@@ -113,7 +113,7 @@ var APP5T_Utils = (function () {
      */
     function validarEmail(email) {
         if (!email) return false;
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email).trim());
+        return /^[^\sí@]+@[^\sí@]+\.[^\sí@]+$/.test(String(email).trim());
     }
 
     // ───────────────────── MONEDA ─────────────────────
@@ -280,7 +280,7 @@ var APP5T_Utils = (function () {
             document.head.appendChild(style);
         }
 
-        // Remover después de 4 s
+        // Remover despuésí de 4 sí
         setTimeout(function () {
             toast.style.animation = 'toastOut .35s ease forwards';
             setTimeout(function () {

@@ -439,7 +439,7 @@ var APP5T_DB = (function () {
             if (!n || !n.id_propiedad) return;
             var p = props.find(function(x) { return String(x.id) === String(n.id_propiedad); });
             
-            // Si el lote no está Vendida ni Venta_Directa, NO debe tener la etiqueta AUTORIZADO_ESCRITURAR:TRUE
+            // Si el lote no estáá Vendida ni Venta_Directa, NO debe tener la etiqueta AUTORIZADO_ESCRITURAR:TRUE
             if (!p || p.estado === 'Disponible' || p.estado === 'Pendiente' || p.estado === 'Reservada' || p.estado === 'Promesada') {
                 if ((n.notas || '').indexOf('[AUTORIZADO_ESCRITURAR:TRUE]') !== -1) {
                     n.notas = (n.notas || '').replace(/\[AUTORIZADO_ESCRITURAR:TRUE\]/g, '').trim();
@@ -647,7 +647,7 @@ var APP5T_DB = (function () {
             return { success: false, error: 'El monto del pie no puede superar el precio de venta del lote' };
         }
 
-        // Determinar si es Reserva estándar o Venta Directa
+        // Determinar si es Reserva estáándar o Venta Directa
         var tipoOp = (data.tipo_operacion === 'Venta_Directa') ? 'Venta_Directa' : 'Reserva';
 
         var neg = {
@@ -701,17 +701,17 @@ var APP5T_DB = (function () {
         if (esSenior) {
             var dir;
             if (idDirector === -1 || !idDirector || idDirector === 0) {
-                dir = { id: 1, nombre: _getActiveUser() || 'Gerente General', auth_reserva: 'S' };
+                dir = { id: 1, nombre: _getActiveUser() || 'Gerente General', auth_reserva: 'Sí' };
             } else {
                 dir = getById('directorio', idDirector);
                 if (!dir) {
-                    dir = { id: idDirector, nombre: _getActiveUser() || 'Gerente General', auth_reserva: 'S' };
+                    dir = { id: idDirector, nombre: _getActiveUser() || 'Gerente General', auth_reserva: 'Sí' };
                 }
 
                 var authVal = String(dir.auth_reserva || '').trim().toUpperCase();
-                var isAuth = authVal === 'S' || authVal === 'SI' || authVal === 'SÍ' || authVal === 'TRUE' || authVal === '1';
+                var isAuth = authVal === 'Sí' || authVal === 'SI' || authVal === 'SíÍ' || authVal === 'TRUE' || authVal === '1';
                 if (!isAuth) {
-                    update('directorio', dir.id, { auth_reserva: 'S' });
+                    update('directorio', dir.id, { auth_reserva: 'Sí' });
                     dir = getById('directorio', idDirector) || dir;
                 }
             }
@@ -736,15 +736,15 @@ var APP5T_DB = (function () {
         var esVentaDirecta = (neg.id_proceso === 'Venta_Directa');
 
         if (!esVentaDirecta && (neg.id_proceso !== 'Reserva' || neg.estado_avance !== 'En Curso')) {
-            return { success: false, error: 'Negociación no está en proceso de Reserva' };
+            return { success: false, error: 'Negociación no estáá en proceso de Reserva' };
         }
         if (neg.estado_avance !== 'En Curso') {
-            return { success: false, error: 'Negociación no está en curso' };
+            return { success: false, error: 'Negociación no estáá en curso' };
         }
 
         var dir;
         if (idDirector === -1) {
-            dir = { id: -1, nombre: 'Auto-Aprobación (Vendedor Senior)', auth_reserva: 'S' };
+            dir = { id: -1, nombre: 'Auto-Aprobación (Vendedor Senior)', auth_reserva: 'Sí' };
         } else {
             dir = getById('directorio', idDirector);
             if (!dir) {
@@ -752,10 +752,10 @@ var APP5T_DB = (function () {
             }
 
             var authVal = String(dir.auth_reserva || '').trim().toUpperCase();
-            var isAuth = authVal === 'S' || authVal === 'SI' || authVal === 'SÍ' || authVal === 'TRUE' || authVal === '1';
+            var isAuth = authVal === 'Sí' || authVal === 'SI' || authVal === 'SíÍ' || authVal === 'TRUE' || authVal === '1';
             if (!isAuth) {
                 // Auto-autorizar al director en la base de datos para corregir discrepancias de sincronización
-                update('directorio', dir.id, { auth_reserva: 'S' });
+                update('directorio', dir.id, { auth_reserva: 'Sí' });
                 dir = getById('directorio', idDirector);
             }
         }
@@ -778,7 +778,7 @@ var APP5T_DB = (function () {
             logAudit(dir.nombre, 'Director', 'negociaciones', 'Aprobación Venta Directa',
                      idNegociacion, 'Propiedad ID: ' + neg.id_propiedad);
         } else {
-            // ── Flujo Reserva Estándar ──
+            // ── Flujo Reserva Estáándar ──
             update('propiedades', neg.id_propiedad, {
                 estado: 'Reservada',
                 fecha_reserva: APP5T_Utils.fechaHoy()

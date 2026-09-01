@@ -92,7 +92,7 @@
       if (!container) return;
 
       if (typeof maplibregl === 'undefined') {
-        console.error('APP5T_Map3D: maplibregl no está disponible.');
+        console.error('APP5T_Map3D: maplibregl no estáá disponible.');
         return;
       }
 
@@ -226,7 +226,7 @@
           });
         }
 
-        // 2. Líneas de borde estándar
+        // 2. Líneas de borde estáándar
         if (!this._map.getLayer(`layer-${key}-3d-line`)) {
           this._map.addLayer({
             id: `layer-${key}-3d-line`,

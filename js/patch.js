@@ -12,7 +12,7 @@ const r1 = `              <div style="display: flex; flex-direction: column; gap
                   <button type="button" id="btn-gerente-cancelar-reserva" class="btn btn-danger" style="flex: 1;"><i class="fa-solid fa-xmark"></i> Rechazar / Anular</button>
                 </div>
                 \${neg && !neg.autorizado_promesa ? \`
-                <button type="button" id="btn-gerente-autorizar-promesa" class="btn btn-warning" style="width: 100%;"><i class="fa-solid fa-file-signature"></i> Notar�a: Autorizar Promesa</button>
+                <button type="button" id="btn-gerente-autorizar-promesa" class="btn btn-warning" style="width: 100%;"><i class="fa-solid fa-file-signature"></i> Notara: Autorizar Promesa</button>
                 \` : ''}
               </div>`;
 
@@ -21,7 +21,7 @@ const t2 = `<button type="button" id="btn-submit-promesa" class="btn btn-primary
 const r2 = `\${neg && !neg.autorizado_promesa ? \`
             <p class="info-text-box warning" style="margin-top: 10px;">
               <i class="fa-solid fa-lock"></i>
-              <span>Firma bloqueada: Requiere que Gerencia autorice el proceso luego de ir a notar�a.</span>
+              <span>Firma bloqueada: Requiere que Gerencia autorice el proceso luego de ir a notara.</span>
             </p>
             <button type="button" class="btn btn-primary" style="margin-top: 10px; opacity: 0.5; cursor: not-allowed;"><i class="fa-solid fa-file-contract"></i> Firmar Promesa (Bloqueado)</button>
             \` : \`
@@ -36,7 +36,7 @@ const r3 = `// btn-gerente-autorizar-promesa event listener
           const btnAuth = container.querySelector('#btn-gerente-autorizar-promesa');
           if (btnAuth) {
             btnAuth.addEventListener('click', () => {
-              if (!confirm('�Confirma que se ha firmado en notar�a y autoriza continuar el proceso?')) return;
+              if (!confirm('Confirma que se ha firmado en notara y autoriza continuar el proceso?')) return;
               const res = APP5T_DB.autorizarPromesa(neg.id);
               if (res && !res.success) {
                 APP5T_Utils.showToast(\`Error: \${res.error}\`, 'error');
